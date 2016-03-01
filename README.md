@@ -10,3 +10,7 @@ IPA Project
 This will start a developement server
 
 ## Configuration
+
+### Security
+
+1. Change Usernames and passwords in the ```app/config/security.yml``` file.
