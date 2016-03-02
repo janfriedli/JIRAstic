@@ -43,7 +43,7 @@ class StatusMapping
     /**
      * @var string
      *
-     * @ORM\Column(name="fieldName", type="string", length=255, nullable=false)
+     * @ORM\Column(name="field_name", type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",

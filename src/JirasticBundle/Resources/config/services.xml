@@ -13,6 +13,11 @@
             <argument type="service" id="event_dispatcher"/>
         </service>
 
+        <service id="jirastic.util.config" class="JirasticBundle\Util\ConfigUtils">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="service_container" />
+        </service>
+
     </services>
 
 </container>

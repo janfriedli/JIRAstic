@@ -48,7 +48,7 @@ class Board
     /**
      * @var int
      *
-     * @ORM\Column(name="jiraId", type="integer", nullable=false, unique=true)
+     * @ORM\Column(name="jira_id", type="integer", nullable=false, unique=true)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="integer",

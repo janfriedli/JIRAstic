@@ -46,7 +46,7 @@ class Status
     /**
      * @var string $titleShort Shortened Title
      *
-     * @ORM\Column(name="titleShort", type="string", length=255, nullable=false)
+     * @ORM\Column(name="title_short", type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
@@ -58,7 +58,7 @@ class Status
     /**
      * @var string $bgcolor Background Color (Hex)
      *
-     * @ORM\Column(name="bgcolor", type="string", length=255,  nullable=false)
+     * @ORM\Column(name="bg_color", type="string", length=255,  nullable=false)
      * @Assert\NotBlank()
      * Hex Code Regex taken from Regexer.com Community matches: #xxxxxx
      * @Assert\Regex("/#{1}([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})/")
