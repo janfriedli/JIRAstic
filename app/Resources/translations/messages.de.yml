@@ -6,6 +6,18 @@ Password: Passwort
 Username: Benutzername
 Login: einloggen
 
+#Config overview
+Configurable Boards: Editierbare Boards
+Filter: Filtern
+Name: Name
+Jiraid: Jira Id
+Type here...: hier suchen...
+
+#Config Board
+Edit Board: Bearbeite
+States: Stati
+Save changes: Speichern
+
 #Validation
 This value needs to be an integer: Dieser Wert muss eine zahl sein
 This value needs to be a string: Dieser Wer muss eine Zeichenkette sein.

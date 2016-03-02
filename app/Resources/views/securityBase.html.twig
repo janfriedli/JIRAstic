@@ -44,7 +44,7 @@
                 <span class="icon-bar"></span>
             </button>
             {% if is_granted('ROLE_ADMIN') %}
-                <a class="navbar-brand" href="#"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
+                <a class="navbar-brand" href="{{ path('admin_board_index') }}"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
             {% else %}
                 <a class="navbar-brand" href="#"><i class="fa fa-home"></i> JIRAstic</a>
             {% endif %}
@@ -57,7 +57,7 @@
                 </li>
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="page-scroll">
-                        <a href="{{ path('boards') }}"><i class="fa fa-television"></i> {% trans %}Presentation{% endtrans %}</a>
+                        <a href="#"><i class="fa fa-television"></i> {% trans %}Presentation{% endtrans %}</a>
                     </li>
                 {% endif %}
             </ul>

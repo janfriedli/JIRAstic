@@ -1,0 +1,25 @@
+{% extends "securityBase.html.twig" %}
+
+{% block content %}
+    <h1>{% trans %}Configurable Boards{% endtrans %}</h1>
+    </br>
+    <div class="input-group"> <span class="input-group-addon">{% trans %}Filter{% endtrans %}</span>
+        <input id="filter" type="text" class="form-control" placeholder="{% trans %}Type here...{% endtrans %}">
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Jira id{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody class="searchable">
+        {% for board in boards %}
+            <tr>
+                <td><a href="{{ path('admin_board_edit', { 'id': board.id }) }}">{{ board.name }}</a></td>
+                <td>{{ board.jiraId }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

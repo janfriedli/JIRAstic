@@ -1,0 +1,25 @@
+{% extends "securityBase.html.twig" %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block content %}
+    <h1>{% trans %}Edit Board{% endtrans %} "{{ edit_form.vars.value.name }}"</h1>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><h4>{% trans %}States{% endtrans %}</h4></a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <ul class="states" style="list-style-type: none;">
+                        {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        {{ form_end(edit_form) }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-success" value="{% trans %}Save changes{% endtrans %}" />
+{% endblock %}

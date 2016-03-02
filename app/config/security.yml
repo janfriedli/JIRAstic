@@ -12,7 +12,7 @@ security:
                       roles: 'ROLE_JIRASTIC_USER'
                   pazaa:
                       password: $2a$12$kx0q9pBzGGE.V7YfDxkauOKRw9pX6RHnzIrM6RSffv/Q5Zlf4vlk2
-                      roles: 'ROLE_ADMINsadf'
+                      roles: 'ROLE_ADMIN'
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs

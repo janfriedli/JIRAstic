@@ -5,3 +5,7 @@ app:
 jirastic_routing:
     resource: "@JirasticBundle/Resources/config/routing.xml"
     prefix: /
+
+jirastic_board:
+    resource: "@JirasticBundle/Controller/BoardController.php"
+    type:     annotation
