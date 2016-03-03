@@ -9,8 +9,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
-
 /**
  * @package JirasticBundle\Form
  * @author   Jan Friedli <jan.friedli@swisscom.com>

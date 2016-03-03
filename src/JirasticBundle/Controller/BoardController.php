@@ -43,38 +43,6 @@ class BoardController extends Controller
     }
 
     /**
-     * Creates a new Board entity.
-     *
-     * @Route("/new", name="admin_board_new")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function newAction(Request $request)
-    {
-        $board = new Board();
-        $form = $this->createForm($this->get('jirastic.form.type.board'), $board);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($board);
-            $em->flush();
-
-            return $this->redirectToRoute('admin_board_show', array('id' => $board->getId()));
-        }
-
-        return $this->render(
-            'board/new.html.twig',
-            array(
-                'board' => $board,
-                'form' => $form->createView(),
-            )
-        );
-    }
-
-    /**
      * Displays a form to edit an existing Board entity.
      *
      * @Route("/{id}/edit", name="admin_board_edit")
