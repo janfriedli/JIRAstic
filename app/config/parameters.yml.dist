@@ -3,7 +3,6 @@
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_host:     127.0.0.1
-    database_port:     ~
     database_name:     symfony
     database_user:     root
     database_password: ~
@@ -20,7 +19,12 @@ parameters:
 
     locale: de
 
-    jirastic_classes: {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}
+    #auth
+    jirastic_api_url:   https://issue.swisscom.ch
+    jirastic_username:
+    jirastic_password:
+
+    jirastic_classes:   {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}
 
     jirastic_font_awesome_icons:
           - fa-check-circle-o

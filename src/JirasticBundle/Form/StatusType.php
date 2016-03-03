@@ -10,7 +10,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-
 /**
  * @package JirasticBundle\Form
  * @author   Jan Friedli <jan.friedli@swisscom.com>
@@ -54,7 +53,6 @@ class StatusType extends AbstractType
                     'icon',
                     ChoiceType::class,
                     array(
-                        //@todo inject directly
                         'choices' => $this->fontAwesomeIcons
                     )
                 )

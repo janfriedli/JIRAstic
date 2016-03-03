@@ -28,6 +28,16 @@
             <argument type="service" id="jirastic.form.type.status" />
         </service>
 
+        <service id="guzzle_client" class="Guzzle\Http\Client">
+            <argument>%jirastic_api_url%</argument>
+        </service>
+
+        <service id="jirastic.gateway.jira" class="JirasticBundle\Gateway\JiraGateway">
+            <argument>%jirastic_username%</argument>
+            <argument>%jirastic_password%</argument>
+            <argument type="service" id="guzzle_client"/>
+        </service>
+
     </services>
 
 </container>
