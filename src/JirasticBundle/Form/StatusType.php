@@ -4,9 +4,11 @@
  */
 namespace JirasticBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 
 /**
@@ -32,7 +34,15 @@ class StatusType extends AbstractType
                 ->add('icon')
                 ->add('class')
                 ->add('orderId')
-                ->add('statusMapping');
+                ->add(
+                    'statusMapping',
+                    EntityType::class,
+                    array(
+                        'class' => 'JirasticBundle:StatusMapping',
+                        'choice_label' => 'name',
+                        'multiple' => true
+                    )
+                );
     }
 
     /**

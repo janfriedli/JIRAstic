@@ -21,6 +21,7 @@
 
         <service id="jirastic.form.type.status" class="JirasticBundle\Form\StatusType">
         </service>
+
         <service id="jirastic.form.type.board" class="JirasticBundle\Form\BoardType">
             <argument type="service" id="jirastic.form.type.status" />
         </service>
