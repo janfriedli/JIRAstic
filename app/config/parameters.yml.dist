@@ -20,3 +20,9 @@ parameters:
 
     locale: de
 
+    jirastic_classes: {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}
+
+    jirastic_font_awesome_icons:
+          - fa-check-circle-o
+          - fa-cog
+          - fa-exclamation-triangle

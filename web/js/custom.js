@@ -1,15 +1,15 @@
-// needs a refactoring but no time yet
-jQuery(document).ready(function() {
+//@todo needs a refactoring but no time yet
+jQuery(document).ready(function () {
     var newFormsSum = 0;
     var $collectionHolder;
     $collectionHolder = $('panel-group');
     // add a delete link to all of the existing tag form li elements
-    $('.panel-default').each(function() {
+    $('.panel-default').each(function () {
         addStateFormDeleteLink($(this));
     });
 
     // setup an "add a tag" link
-    var $addTagLink = $('<a href="#" class="add_tag_link"><i class="fa fa-plus-square-o"></i> Add a new State</a></br>');
+    var $addTagLink = $('<a href="#" class="add_tag_link pull-right"><i class="fa fa-2x fa-plus-square-o"></i></a><p>');
     // add the "add a tag" anchor and li to the tags ul
     $('#accordion').after($addTagLink);
     $collectionHolder = $('#accordion');
@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-    $addTagLink.on('click', function(e) {
+    $addTagLink.on('click', function (e) {
         // prevent the link from creating a "#" on the URL
         e.preventDefault();
 
@@ -45,10 +45,10 @@ function addStateForm($collectionHolder, $newLinkLi, newFormsSum) {
     clone.insertAfter(current);
     clone.find('.panel-body').html(newForm);
     //the id dosnt matter it has just to match the link
-    var rand = 'randId'+Math.floor((Math.random() * 100) + 30)
+    var rand = 'randId' + Math.floor((Math.random() * 100) + 30)
 
     clone.find('div:nth-child(2)').attr('id', rand);
-    clone.find('a').attr('href', '#'+rand);
+    clone.find('a').attr('href', '#' + rand);
     clone.find('button').remove();
     clone.find('a').text('new State ' + newFormsSum);
 
@@ -59,7 +59,7 @@ function addStateFormDeleteLink($tagFormLi) {
     var $removeFormA = $('<button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>');
     $tagFormLi.find('.panel-heading').find('.panel-title').append($removeFormA);
 
-    $removeFormA.on('click', function(e) {
+    $removeFormA.on('click', function (e) {
         // prevent the link from creating a "#" on the URL
         e.preventDefault();
 

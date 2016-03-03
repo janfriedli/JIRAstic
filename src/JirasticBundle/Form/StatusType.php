@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 /**
  * @package JirasticBundle\Form
@@ -20,6 +22,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class StatusType extends AbstractType
 {
     /**
+     * @var array
+     */
+    private $fontAwesomeIcons;
+
+    /**
+     * @var array
+     */
+    private $classes;
+
+    /**
+     * StatusType constructor.
+     * @param Container $container Container
+     */
+    public function __construct($fontAwesomeIcons, $classes)
+    {
+        $this->fontAwesomeIcons = $fontAwesomeIcons;
+        $this->classes = $classes;
+    }
+    /**
      * @param FormBuilderInterface $builder Form Builder
      * @param array                $options Options
      * @return void
@@ -29,8 +50,21 @@ class StatusType extends AbstractType
         $builder->add('title')
                 ->add('titleShort')
                 ->add('bgcolor')
-                ->add('icon')
-                ->add('class')
+                ->add(
+                    'icon',
+                    ChoiceType::class,
+                    array(
+                        //@todo inject directly
+                        'choices' => $this->fontAwesomeIcons
+                    )
+                )
+                ->add(
+                    'class',
+                    ChoiceType::class,
+                    array(
+                        'choices' => $this->classes
+                    )
+                )
                 ->add('orderId')
                 ->add(
                     'statusMapping',

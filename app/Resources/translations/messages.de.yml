@@ -17,6 +17,13 @@ Type here...: hier suchen...
 Edit States for Board: Bearbeite Stati für
 States: Stati
 Save changes: Speichern
+Title: Titel
+Title short: Kurztitel
+Bgcolor: Hintergrundfarbe (Hex)
+Icon: Icon
+Class: CSS Klasse
+Order id: Reihenfolge
+Status mapping: Statuszuordnung
 
 #Validation
 This value needs to be an integer: Dieser Wert muss eine zahl sein
