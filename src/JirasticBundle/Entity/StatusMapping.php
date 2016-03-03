@@ -33,10 +33,6 @@ class StatusMapping
 
     /**
      * @ORM\ManyToMany(targetEntity="Status", mappedBy="StatusMapping", cascade={"all"})
-     * @Assert\Type(
-     *     type="array",
-     *     message="This value needs to be an array"
-     * )
      */
     private $status;
 
@@ -69,10 +65,6 @@ class StatusMapping
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      * @Assert\NotBlank()
-     * @Assert\Type(
-     *     type="string",
-     *     message="This value needs to be a string"
-     * )
      */
     private $name;
 

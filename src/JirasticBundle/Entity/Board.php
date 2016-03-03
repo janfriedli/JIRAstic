@@ -60,10 +60,6 @@ class Board
     /**
      * @ORM\ManyToMany(targetEntity="Status", inversedBy="board", cascade={"all"} )
      * @Assert\NotBlank()
-     * @Assert\Type(
-     *     type="array",
-     *     message="This value needs to be an array"
-     * )
      */
     protected $statuses;
 

@@ -89,7 +89,6 @@ class BoardController extends Controller
         $deleteForm = $this->createDeleteForm($board);
         $editForm = $this->createForm($this->get('jirastic.form.type.board'), $board);
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($board);

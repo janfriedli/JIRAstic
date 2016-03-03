@@ -103,19 +103,11 @@ class Status
 
     /**
      * @ORM\ManyToMany(targetEntity="Board", mappedBy="Status", cascade={"all"})
-     * @Assert\Type(
-     *     type="array",
-     *     message="This value needs to be an array"
-     * )
      */
     protected $board;
 
     /**
      * @ORM\ManyToMany(targetEntity="StatusMapping", inversedBy="status", cascade={"all"} )
-     * @Assert\Type(
-     *     type="array",
-     *     message="This value needs to be an array"
-     * )
      */
     private $statusMapping;
 
