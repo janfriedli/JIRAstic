@@ -54,7 +54,7 @@ class BoardController extends Controller
     public function newAction(Request $request)
     {
         $board = new Board();
-        $form = $this->createForm('JirasticBundle:Board', $board);
+        $form = $this->createForm($this->get('jirastic.form.type.board'), $board);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -87,7 +87,7 @@ class BoardController extends Controller
     public function editAction(Request $request, Board $board)
     {
         $deleteForm = $this->createDeleteForm($board);
-        $editForm = $this->createForm('JirasticBundle\Form\BoardType', $board);
+        $editForm = $this->createForm($this->get('jirastic.form.type.board'), $board);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

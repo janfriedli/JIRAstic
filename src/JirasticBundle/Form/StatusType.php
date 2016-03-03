@@ -1,13 +1,13 @@
 <?php
 /**
- * Board Form
+ * StatusType Form
  */
 namespace JirasticBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 /**
  * @package JirasticBundle\Form
@@ -15,38 +15,26 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
  * @license  https://opensource.org/licenses/GPL-3.0 Public License
  * @link     http://www.swisscom.ch
  *
- * Class BoardType
+ * Class StatusType
  */
-class BoardType extends AbstractType
+class StatusType extends AbstractType
 {
-
     /**
-     * BoardType constructor.
-     * @param StatusType $statusType Status Type
-     */
-    public function __construct(StatusType $statusType)
-    {
-        $this->statusType = $statusType;
-    }
-
-    /**
-     * @param FormBuilderInterface $builder Builder
+     * @param FormBuilderInterface $builder Form Builder
      * @param array                $options Options
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(
-            'statuses',
-            CollectionType::class,
-            array(
-                'entry_type' => $this->statusType,
-                'allow_add'    => true,
-                'allow_delete' => true,
-            )
-        );
+        $builder->add('title')
+                ->add('titleShort')
+                ->add('bgcolor')
+                ->add('icon')
+                ->add('class')
+                ->add('orderId')
+                ->add('statusMapping');
     }
-    
+
     /**
      * @param OptionsResolver $resolver Resolver
      * @return void
@@ -55,7 +43,7 @@ class BoardType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'JirasticBundle\Entity\Board'
+                'data_class' => 'JirasticBundle\Entity\Status'
             )
         );
     }
