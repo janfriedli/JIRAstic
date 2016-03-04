@@ -33,7 +33,8 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface, 
     private $container;
 
     /**
-     * @param ContainerInterface|null $container
+     * @param ContainerInterface $container Service Container
+     * @return void
      */
     public function setContainer(ContainerInterface $container = null)
     {

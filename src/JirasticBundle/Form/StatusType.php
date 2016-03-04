@@ -32,7 +32,8 @@ class StatusType extends AbstractType
 
     /**
      * StatusType constructor.
-     * @param Container $container Container
+     * @param array $fontAwesomeIcons List of FontAwesome icons class names
+     * @param array $classes          List of css class names
      */
     public function __construct($fontAwesomeIcons, $classes)
     {

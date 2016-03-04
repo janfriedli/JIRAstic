@@ -74,4 +74,3 @@ class BoardPrototype
         return $this->sprints;
     }
 }
-
