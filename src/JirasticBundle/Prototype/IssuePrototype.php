@@ -3,10 +3,10 @@
  * Represents a Jira issue
  */
 
-namespace JirasticBundle\Model;
+namespace JirasticBundle\Prototype;
 
 /**
- * @package JirasticBundle\Model
+ * @package JirasticBundle\Prototype
  * @author   Jan Friedli <jan.friedli@swisscom.com>
  * @license  https://opensource.org/licenses/GPL-3.0 Public License
  * @link     http://www.swisscom.ch

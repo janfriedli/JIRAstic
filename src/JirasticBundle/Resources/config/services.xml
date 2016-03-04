@@ -18,7 +18,6 @@
             <argument type="service" id="service_container" />
         </service>
 
-
         <service id="jirastic.form.type.status" class="JirasticBundle\Form\StatusType">
             <argument>%jirastic_font_awesome_icons%</argument>
             <argument>%jirastic_classes%</argument>
@@ -36,6 +35,49 @@
             <argument>%jirastic_username%</argument>
             <argument>%jirastic_password%</argument>
             <argument type="service" id="guzzle_client"/>
+        </service>
+
+        <service id="jirastic.presentation.controller" class="JirasticBundle\Controller\PresentationController">
+            <argument type="service" id="templating"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="jirastic.jira_api"/>
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="jirastic.jira_api" class="JirasticBundle\Service\JiraAPI">
+            <argument type="service" id="jirastic.repository.board"/>
+        </service>
+
+        <service id="jirastic.prototype.board" class="JirasticBundle\Prototype\BoardPrototype">
+            <argument type="service" id="jirastic.repository.sprint" />
+        </service>
+
+        <service id="jirastic.prototype.sprint" class="JirasticBundle\Prototype\SprintPrototype">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument type="service" id="jirastic.util.config"/>
+            <argument type="service" id="jirastic.repository.issue"/>
+        </service>
+
+        <service id="jirastic.prototype.issue" class="JirasticBundle\Prototype\IssuePrototype" />
+
+        <service id="jirastic.repository.sprint" class="JirasticBundle\Repository\Jira\SprintRepository">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument type="service" id="jirastic.prototype.sprint"/>
+            <argument>%jirastic_show_sprints_x_months_back%</argument>
+        </service>
+
+        <service id="jirastic.repository.board" class="JirasticBundle\Repository\Jira\JiraBoardRepository">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument type="service" id="jirastic.prototype.board"/>
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="jirastic.repository.issue" class="JirasticBundle\Repository\Jira\IssueRepository">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument type="service" id="jirastic.prototype.issue"/>
+            <argument type="service" id="jirastic.util.config"/>
+            <argument type="service" id="service_container"/>
         </service>
 
     </services>

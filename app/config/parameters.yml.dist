@@ -30,3 +30,11 @@ parameters:
           - fa-check-circle-o
           - fa-cog
           - fa-exclamation-triangle
+
+   jirastic_show_sprints_x_months_back: 6
+
+   # customfields
+   jirastic_testInstructionFieldId: 10478
+   jirastic_storyPointsFieldId: 10150
+   jirastic_storyPointsEstimateFieldId: 12223
+   jirastic_ownerNameFieldId: 16025

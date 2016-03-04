@@ -54,6 +54,14 @@ class BoardController extends Controller
      */
     public function editAction(Request $request, Board $board)
     {
+        //make sure jira states are available
+        $this->get('doctrine.orm.entity_manager')
+            ->getRepository('JirasticBundle:StatusMapping')
+            ->loadStatusesFromJira(
+                $this->get('doctrine.orm.entity_manager'),
+                $this->get('jirastic.gateway.jira')
+            );
+
         $deleteForm = $this->createDeleteForm($board);
         $editForm = $this->createForm($this->get('jirastic.form.type.board'), $board);
         $editForm->handleRequest($request);

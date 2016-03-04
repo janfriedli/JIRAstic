@@ -3,10 +3,13 @@
  * Represents a Jira board
  */
 
-namespace JirasticBundle\Model;
+namespace JirasticBundle\Prototype;
+
+use JirasticBundle\Repository\Jira\SprintRepository;
+use JirasticBundle\Repository\Jira\SprintRepositoryInterface;
 
 /**
- * @package JirasticBundle\Model
+ * @package JirasticBundle\Prototype
  * @author   Jan Friedli <jan.friedli@swisscom.com>
  * @license  https://opensource.org/licenses/GPL-3.0 Public License
  * @link     http://www.swisscom.ch
@@ -30,6 +33,19 @@ class BoardPrototype
      */
     private $title;
 
+    /**
+     * @var SprintRepository $sprintRepository Sprint repository
+     */
+    private $sprintRepository;
+
+    /**
+     * BoardPrototype constructor.
+     * @param SprintRepositoryInterface $sprintRepository Sprint repository
+     */
+    public function __construct(SprintRepositoryInterface $sprintRepository)
+    {
+        $this->sprintRepository = $sprintRepository;
+    }
 
     /**
      * @return Int
@@ -64,6 +80,7 @@ class BoardPrototype
     {
         $this->title = $title;
     }
+
     /**
      * Returns all sprints of the board
      *
@@ -71,6 +88,34 @@ class BoardPrototype
      */
     public function getSprints()
     {
+        if (!$this->sprints) {
+            $this->initSprints();
+        }
+
         return $this->sprints;
+    }
+
+    /**
+     * Load sprints from Jira API
+     *
+     * @return void
+     */
+    private function initSprints()
+    {
+        $this->sprintRepository->setBoardId($this->id);
+        $this->sprints = $this->sprintRepository->getAllSprints();
+    }
+
+    /**
+     * Returns the fitting Sprint or null if it doesn't exist
+     *
+     * @param int $sprintId Sprint Id
+     * @return null|Sprint
+     */
+    public function getSprintById($sprintId)
+    {
+        //@todo find a better solution for setBoardId()
+        $this->sprintRepository->setBoardId($this->id);
+        return $this->sprintRepository->getSprintById($sprintId);
     }
 }

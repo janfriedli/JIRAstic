@@ -26,9 +26,18 @@ Order id: Reihenfolge
 Status mapping: Statuszuordnung
 
 #Validation
-This value needs to be an integer: Dieser Wert muss eine zahl sein
+This value needs to be an integer: Dieser Wert muss eine Zahl sein
 This value needs to be a string: Dieser Wer muss eine Zeichenkette sein.
 This value needs to be an array: Dieser Wert muss eine Liste sein.
 
 #Exceptions
 Forbidden: Keine Zugriffsrechte
+
+#Boardoverview
+Select a board: Wähle ein Board
+Boardname: Boardname
+
+#Sprintoverview
+Select a Sprint for: Wähle einen Sprint für
+Sprint: Sprint
+Go back: zurück
