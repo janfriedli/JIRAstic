@@ -35,7 +35,7 @@ class BoardController extends Controller
         $boards = $em->getRepository('JirasticBundle:Board')->findAll();
 
         return $this->render(
-            'board/index.html.twig',
+            'JirasticBundle:board:index.html.twig',
             array(
                 'boards' => $boards,
             )
@@ -74,7 +74,7 @@ class BoardController extends Controller
         }
 
         return $this->render(
-            'board/edit.html.twig',
+            'JirasticBundle:board:edit.html.twig',
             array(
                 'board' => $board,
                 'edit_form' => $editForm->createView(),

@@ -92,7 +92,7 @@ class PresentationController
     public function boardsAction(Request $request)
     {
         return $this->templating->renderResponse(
-            'presentation/boards.html.twig',
+            'JirasticBundle:presentation:boards.html.twig',
             array(
                 'boards' => $this->jiraApi->getBoards(),
             )
@@ -108,7 +108,7 @@ class PresentationController
     public function sprintsAction($boardId)
     {
         return $this->templating->renderResponse(
-            'presentation/sprints.html.twig',
+            'JirasticBundle:presentation:sprints.html.twig',
             array(
                 'boards' => $this->jiraApi->getBoards(),
                 'activeBoard' => $this->jiraApi->getBoardById($boardId),
@@ -126,7 +126,7 @@ class PresentationController
     {
         $sprint = $this->jiraApi->getBoardById($boardId)->getSprintById($sprintId);
         return $this->templating->renderResponse(
-            'presentation/presentation.html.twig',
+            'JirasticBundle:presentation:presentation.html.twig',
             array(
                 'mappedIssues' => $sprint->getIssues(),
                 'sprint' => $sprint,
