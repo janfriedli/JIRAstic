@@ -32,7 +32,15 @@ This value needs to be an array: Dieser Wert muss eine Liste sein.
 
 #Exceptions
 Forbidden: Keine Zugriffsrechte
-
+Whoops something wen't wrong: Da ist etwas schiefgelaufen
+If you keep getting this error create an issue on: Wenn der Fehler bestehen bleibt erfasse einen Issue auf
+Unauthorized! (HTTP 401): Nicht authentifziert! (HTTP 401)
+Check your configuration: Überprüfe die Konfiguration
+return to the homepage: Zurück zur Seite
+You're not allowed to access this page: Keine Zugriffsrechte
+Page not found (HTTP 404): Seite nicht gefunden
+The requested page couldn't be located. Checkout for any URL misspelling or: Die angeforderte Seite konnte nicht gefunden werden. Überprüfe die URL oder gehe
+Something has intentionally gone wrong.: JIRAstic ist leider überfordert
 #Boardoverview
 Select a board: Wähle ein Board
 Boardname: Boardname
@@ -41,3 +49,20 @@ Boardname: Boardname
 Select a Sprint for: Wähle einen Sprint für
 Sprint: Sprint
 Go back: zurück
+
+#Presentation
+resumé: Zusammenfassung
+overview: Übersicht
+key: Schlüssel
+sp: Sp
+description: Beschreibung
+No issues: keine Issues
+created by: erstellt von
+owned by: Besitzer
+assigned to: zugewiesen an
+show summary: Zusammenfassung
+hide summary: ausblenden
+Test Instructions: Testinstruktionen
+Summary: Zusammenfassung
+
+

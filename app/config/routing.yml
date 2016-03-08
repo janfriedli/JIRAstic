@@ -9,3 +9,6 @@ jirastic_routing:
 jirastic_board:
     resource: "@JirasticBundle/Controller/BoardController.php"
     type:     annotation
+
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"

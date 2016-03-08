@@ -6,6 +6,7 @@ namespace JirasticBundle\Gateway;
 
 use Guzzle\Http\Exception\RequestException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
  * @package JirasticBundle\Gateway
@@ -67,7 +68,7 @@ class JiraGateway
             $response = $request->send();
 
         } catch (RequestException $e) {
-            throw new BadRequestHttpException('This Board does not support SCRUM');
+            throw $e;
         }
 
         $body = json_decode($response->getBody());

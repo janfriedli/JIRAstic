@@ -1,0 +1,7 @@
+{% extends 'securityBase.html.twig' %}
+{% block content %}
+    <h1><i class="fa fa-question"></i> {% trans %}Page not found (HTTP 404){% endtrans %}</h1>
+    <p>
+        {% trans %}The requested page couldn't be located. Checkout for any URL misspelling or{% endtrans %} <a href="{{ path('boards') }}">{% trans %}return to the homepage{% endtrans %}</a>.
+    </p>
+{% endblock %}

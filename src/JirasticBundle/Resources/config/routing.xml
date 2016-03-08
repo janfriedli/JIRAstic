@@ -24,7 +24,7 @@
         <default key="_controller">jirastic.presentation.controller:sprintsAction</default>
     </route>
 
-    <route id="presentation" path="/boards/{boardId}/sprints/{sprintId}">
+    <route id="presentation" path="/board/{boardId}/sprint/{sprintId}">
         <default key="_controller">jirastic.presentation.controller:presentationAction</default>
     </route>
 

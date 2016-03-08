@@ -66,6 +66,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
         $this->applyMapping($manager, array(1, 4), 'open');
         $this->applyMapping($manager, array(5), 'resolved');
         $this->applyMapping($manager, array(6), 'closed');
+        $this->applyMapping($manager, array(3), 'in progress');
     }
 
     /**

@@ -1,7 +1,21 @@
 {
-    "name": "jan/jir-astic",
-    "license": "proprietary",
+    "name": "janfriedli/JIRAstic",
+    "license": "GPLv3",
     "type": "project",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "hakimel/reveal.js",
+                "version": "3.1.0",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/hakimel/reveal.js/archive/3.1.0.zip",
+                    "reference": "3.1.0"
+                }
+            }
+        }
+    ],
     "autoload": {
         "psr-4": {
             "": "src/"
@@ -25,7 +39,9 @@
         "squizlabs/php_codesniffer": "^2.5",
         "symfony/console": "^2.8",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "guzzle/guzzle": "~3.9"
+        "guzzle/guzzle": "~3.9",
+        "hakimel/reveal.js": "3.1.0",
+        "willdurand/js-translation-bundle": "^2.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
@@ -39,7 +55,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "php app/console doctrine:fixtures:load --no-interaction"
+            "php app/console doctrine:fixtures:load --no-interaction",
+            "rm -rf web/reveal && mkdir web/reveal",
+            "cp -R vendor/hakimel/reveal.js/js web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/css web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/plugin web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/lib web/reveal/"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -47,7 +68,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+            "rm -rf web/reveal && mkdir web/reveal",
+            "cp -R vendor/hakimel/reveal.js/js web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/css web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/plugin web/reveal/",
+            "cp -R vendor/hakimel/reveal.js/lib web/reveal/"
         ],
         "check": [
             "./bin/phpcs --config-set installed_paths ../../libgraviton/codesniffer/CodeSniffer/Standards",

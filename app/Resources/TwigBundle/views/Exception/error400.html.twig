@@ -1,0 +1,12 @@
+{% extends 'securityBase.html.twig' %}
+{% block content %}
+    <h1><i class="fa fa-cogs"></i> {% trans %}Whoops something wen't wrong{% endtrans %} (HTTP 400)</h1>
+    </br>
+    <p>
+        {% if exception.message is defined %}
+            <div class="alert alert-danger" role="alert">{{ exception.message|trans }}</div>
+        {% endif %}</br>
+
+        {% trans %}If you keep getting this error create an issue on{% endtrans %} <a href="https://github.com/janfriedli/JIRAstic/issues">GitHub</a>
+    </p>
+{% endblock %}
