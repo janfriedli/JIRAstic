@@ -1,0 +1,48 @@
+{% extends "securityBase.html.twig" %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block content %}
+    <h1>{% trans %}Edit States for Board{% endtrans %} "{{ edit_form.vars.value.name }}"</h1>
+    <div class="panel-group" id="accordion" data-prototype="{{ form_widget(edit_form.statuses.vars.prototype)|e }}">
+        {{ form_start(edit_form) }}
+        {{ form_errors(edit_form) }}
+        {% for state in edit_form.statuses %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ state.vars.data.id }}">
+                        {{ state.vars.data.title }}
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse{{ state.vars.data.id }}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    {{ form_row(state.title) }}
+                    {{ form_errors(state.title) }}
+
+                    {{ form_row(state.titleShort) }}
+                    {{ form_errors(state.titleShort) }}
+
+                    {{ form_row(state.bgcolor) }}
+                    {{ form_errors(state.bgcolor) }}
+
+                    {{ form_row(state.icon) }}
+                    {{ form_errors(state.icon) }}
+
+                    {{ form_row(state.class) }}
+                    {{ form_errors(state.class) }}
+
+                    {{ form_row(state.orderId) }}
+                    {{ form_errors(state.orderId) }}
+
+                    {{ form_row(state.statusMapping) }}
+                    {{ form_errors(state.statusMapping) }}
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <input type="submit" class="btn btn-success" value="{% trans %}Save changes{% endtrans %}" />
+    {{ form_end(edit_form) }}
+{% endblock %}

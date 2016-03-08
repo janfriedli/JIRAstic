@@ -1,0 +1,209 @@
+{#This template was taken from https://github.com/paza/jirastic/tree/v2 and modified to my needs#}
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="/reveal/css/reveal.css">
+    <link rel="stylesheet" href="/reveal/css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="/reveal-customize/style.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="/reveal/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/reveal/css/print/pdf.css' : '/reveal/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+{% endblock %}
+
+{% block footer %}
+    <script src="/reveal/lib/js/head.min.js"></script>
+    <script src="/reveal/js/reveal.js"></script>
+
+    <script>
+
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            width: 1280,
+            height: 1024,
+
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            previewLinks: false,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/reveal/plugin/zoom-js/zoom.js', async: true },
+                { src: '/reveal/plugin/notes/notes.js', async: true }
+            ]
+        });
+
+        Reveal.configure({
+            keyboard: {
+                27: function() {
+                    window.location = location.protocol + "//" + location.host + "/boards";
+                } //ESC is pressed
+            }
+        });
+
+    </script>
+    <script src="{{ asset('reveal-customize/js/reveal-custom.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>{{sprint.getTitle()}}</h1>
+                <h3>{% trans %}resumé{% endtrans %}</h3>
+                <p>{{sprint.getStartDate()}} - {{sprint.getEndDate()}}</p>
+            </section>
+
+            <section>
+                {% if sprintSuccessful %}
+                    <h1>{{sprint.getTitle()}} <i class="fa fa-thumbs-up"></i></h1>
+                {% elseif sprintSuccessful is null %}
+                    <h1>{{sprint.getTitle()}} <i class="fa fa-thumbs-up fa-rotate-270"></i></h1>
+                {% elseif not sprintSuccessful %}
+                    <h1>{{sprint.getTitle()}} <i class="fa fa-thumbs-down"></i></h1>
+                {% endif %}
+                <h3>{% trans %}overview{% endtrans %}</h3>
+                <p>
+
+                    {% for issuesByStatus in mappedIssues %}
+
+                        <a href="#/{{issuesByStatus.id}}" class="bubbleWrapper {{issuesByStatus.class}}" data-preview-link>
+                            <span class="bubble">
+                                {{issuesByStatus.total}}
+                            </span>
+                            <br>
+                            {{issuesByStatus.titleShort}}
+                        </a>
+
+                    {% endfor %}
+
+                </p>
+            </section>
+
+            {% for issuesByStatus in mappedIssues %}
+                <section data-background="{{issuesByStatus.bgcolor}}" id="{{issuesByStatus.id}}">
+                    <div class="header">
+                        <i class="fa {{issuesByStatus.icon}}"></i>
+                        {{issuesByStatus.title}}
+                    </div>
+                    <section>
+                        <h1>{{issuesByStatus.title}}</h1>
+
+                        {% if issuesByStatus.issues is defined %}
+                        <div class="overflow">
+                            <table>
+                            <thead>
+                                <th>{% trans %}key{% endtrans %}</th>
+                                <th title="Story Points">{% trans %}sp{% endtrans %}</th>
+                                <th>{% trans %}description{% endtrans %}</th>
+                            </thead>
+                            <tbody>
+                            {% for issue in issuesByStatus.issues %}
+                                <tr>
+                                    <td nowrap>
+                                        <a href="https://issue.swisscom.ch/browse/{{issue.key}}" data-preview-link>
+                                            {{issue.key}}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{issue.getStoryPoints()}}
+                                    </td>
+                                    <td>{{issue.getSummary()}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                            </div>
+                        {% else %}
+                        <p>{% trans %}No issues{% endtrans %}</p>
+                        {% endif %}
+                    </section>
+                    {% if  issuesByStatus.issues is defined%}
+                        {% for issue in issuesByStatus.issues %}
+                            <section>
+                                <h1>
+                                    <a href="https://issue.swisscom.ch/browse/{{issue.key}}" data-preview-link>
+                                        {{issue.key}}
+                                    </a>
+                                    <small>({{issue.getStoryPoints()}})</small>
+                                </h1>
+                                <p>{{issue.getSummary()}}</p>
+                                <p class="ownerInfo">
+                                    <small>{% trans %}created by{% endtrans %}</small> {{issue.getCreatorName()}} /
+                                    {% if issue.getOwnerName %}
+                                        <small>{% trans %}owned by{% endtrans %}</small> {{issue.getOwnerName()}} /
+                                    {% endif %}
+                                    <small>{% trans %}assigned to{% endtrans %}</small> {{issue.getAssigneeName()}}
+                                </p>
+                                <div class="toggleDescTest"><i class="fa fa-eye"></i> {% trans %}show summary{% endtrans %}</div>
+                                <div class="stretch testInstruction">
+                                    <div class="stretchInner">
+                                        <div class="testInstructionDiv">
+                                            <h2>{% trans %}Test Instructions{% endtrans %}</h2>
+                                            {{issue.getTestInstruction()|raw}}
+                                        </div>
+                                        <div class="descriptionDiv">
+                                            <h2>{% trans %}Summary{% endtrans %}</h2>
+                                            {{issue.getDescription()|raw}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        {% endfor %}
+                    {% endif %}
+
+                </section>
+            {% endfor %}
+
+            <section>
+                <h1>{{sprint.getTitle()}}</h1>
+                <h3>{% trans %}overview{% endtrans %}</h3>
+                <p>
+
+                    {% for issuesByStatus in mappedIssues %}
+
+                        <a href="#/{{issuesByStatus.id}}" class="bubbleWrapper {{issuesByStatus.class}}" data-preview-link>
+                            <span class="bubble">
+                                {{issuesByStatus.total}}
+                            </span>
+                            <br>
+                            {{issuesByStatus.titleShort}}
+                        </a>
+
+                    {% endfor %}
+
+                </p>
+            </section>
+        </div>
+    </div>
+{% endblock %}
