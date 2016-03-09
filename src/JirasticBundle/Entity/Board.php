@@ -60,6 +60,7 @@ class Board
     /**
      * @ORM\ManyToMany(targetEntity="Status", inversedBy="board", cascade={"all"} )
      * @Assert\NotBlank()
+     * @Assert\Valid()
      */
     protected $statuses;
 

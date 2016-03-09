@@ -41,6 +41,8 @@ You're not allowed to access this page: Keine Zugriffsrechte
 Page not found (HTTP 404): Seite nicht gefunden
 The requested page couldn't be located. Checkout for any URL misspelling or: Die angeforderte Seite konnte nicht gefunden werden. Überprüfe die URL oder gehe
 Something has intentionally gone wrong.: JIRAstic ist leider überfordert
+This value needs to be a string: Dieses Feld sollte eine Zeichenkette sein.
+
 #Boardoverview
 Select a board: Wähle ein Board
 Boardname: Boardname

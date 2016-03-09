@@ -70,10 +70,6 @@ class Status
      *
      * @ORM\Column(name="icon", type="string", length=30, nullable=false)
      * @Assert\NotBlank()
-     * @Assert\Type(
-     *     type="string",
-     *     message="This value needs to be a string"
-     * )
      */
     private $icon;
 
@@ -108,6 +104,7 @@ class Status
 
     /**
      * @ORM\ManyToMany(targetEntity="StatusMapping", inversedBy="status", cascade={"all"} )
+     * @Assert\Valid()
      */
     private $statusMapping;
 
