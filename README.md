@@ -18,7 +18,7 @@ This will start a development server
 
 ### Database
 
-JIRAstic uses MySQL. Configure the necessary trough ```app/config/paramters.yml``` if not already done when running ```composer install```.
+JIRAstic uses MySQL. Configure the necessary details trough ```app/config/paramters.yml``` if not already done when running ```composer install```.
 
 Make sure the databasename doesn't already exist and run:
 
@@ -32,6 +32,6 @@ and then:
 
 To run the Unit Test:
 
-```phpunit```
+```phpunit ```
 
 This assumes you have PHPUnit installed.
