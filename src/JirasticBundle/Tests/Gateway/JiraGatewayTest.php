@@ -85,7 +85,6 @@ class JiraGatewayTest extends \PHPUnit_Framework_TestCase
 
         $jiraGateway = new JiraGateway('usr', 'pw', $guzzleMock);
         $jiraGateway->getRequest('/yolo');
-
     }
 
     /**

@@ -27,3 +27,11 @@ Make sure the databasename doesn't already exist and run:
 and then: 
 
 ```php bin/console doctrine:schema:update --force```
+
+## Unit Tests
+
+To run the Unit Test:
+
+```phpunit```
+
+This assumes you have PHPUnit installed.
