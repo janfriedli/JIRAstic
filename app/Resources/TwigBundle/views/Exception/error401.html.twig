@@ -1,0 +1,7 @@
+{% extends 'securityBase.html.twig' %}
+{% block content %}
+    <h1><i class="fa fa-exclamation-triangle"></i> {% trans %}Unauthorized! (HTTP 401){% endtrans %}</h1>
+    <p>
+        {% trans %}Check your configuration{% endtrans %} <a href="{{ path('boards') }}">{% trans %}return to the homepage{% endtrans %}</a>.
+    </p>
+{% endblock %}

@@ -1,0 +1,64 @@
+.reveal a {
+    color: #fff;
+}
+
+a.bubbleWrapper {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 0 1rem !important;
+}
+
+.bubbleWrapper .bubble {
+    font-size: 5rem;
+    display: inline-block;
+    line-height: 6rem;
+    text-align: center;
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: 0.5rem;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.bubbleWrapper.resolved .bubble   { background-color: #1e7145; }
+.bubbleWrapper.inprogress .bubble { background-color: #2b5797; }
+.bubbleWrapper.unresolved .bubble { background-color: #b91d47; }
+
+.testInstruction {
+    overflow-y: auto;
+    border: 1px dotted white !important;
+}
+
+.testInstruction .stretchInner{
+    padding: 1rem 1rem 2rem 1rem;
+    text-align: left;
+    font-size: 80%;
+}
+.ownerInfo small {
+    line-height: 2.4em;
+}
+
+.slides .header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    text-align: right;
+}
+
+.toggleDescTest {
+    float: left;
+    background-color: whitesmoke;
+    padding: 0.2em !important;
+    margin-bottom: 0.2em !important;
+    border: 1px black;
+    border-radius: 5px;
+    color: #3d3d3d;
+}
+
+.overflow{
+    overflow: auto;
+    width: 100%; /* Takes up the whole width of the slide */
+    height: 700px; /* 100% doesn't work here, 400px seems to work well with almost every resolution. */
+}

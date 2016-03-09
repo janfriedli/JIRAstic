@@ -28,6 +28,9 @@
     <![endif]-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/filter.js') }}"></script>
+
     {% block head %}
     {% endblock %}
 
@@ -44,9 +47,9 @@
                 <span class="icon-bar"></span>
             </button>
             {% if is_granted('ROLE_ADMIN') %}
-                <a class="navbar-brand" href="#"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
+                <a class="navbar-brand" href="{{ path('admin_board_index') }}"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
             {% else %}
-                <a class="navbar-brand" href="#"><i class="fa fa-home"></i> JIRAstic</a>
+                <a class="navbar-brand" href="{{ path('boards') }}"><i class="fa fa-home"></i> JIRAstic</a>
             {% endif %}
         </div>
 
@@ -56,7 +59,7 @@
                     <a href="#page-top"></a>
                 </li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="page-scroll">
+                    <li class="page-scroll {% if app.request.get('_route') == 'boards' %}active{% endif %}">
                         <a href="{{ path('boards') }}"><i class="fa fa-television"></i> {% trans %}Presentation{% endtrans %}</a>
                     </li>
                 {% endif %}
