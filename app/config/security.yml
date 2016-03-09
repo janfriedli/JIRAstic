@@ -35,7 +35,7 @@ security:
     access_control:
         # require ROLE_ADMIN for /admin*
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: /boards, roles: ROLE_JIRASTIC_USER }
+        - { path: ^/board, roles: ROLE_JIRASTIC_USER }
 
     encoders:
             Symfony\Component\Security\Core\User\User:
