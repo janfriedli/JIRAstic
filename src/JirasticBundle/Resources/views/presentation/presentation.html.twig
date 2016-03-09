@@ -155,7 +155,7 @@
                                     <a href="https://issue.swisscom.ch/browse/{{issue.key}}" data-preview-link>
                                         {{issue.key}}
                                     </a>
-                                    <small>({{issue.getStoryPoints()}})</small>
+                                    {% if issue.getStoryPoints() is not null %}<small>({{issue.getStoryPoints()}})</small>{% endif %}
                                 </h1>
                                 <p>{{issue.getSummary()}}</p>
                                 <p class="ownerInfo">
