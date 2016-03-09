@@ -5,6 +5,7 @@ IPA Project
 
 - clone this repo
 - Run ```composer install``
+- Make the necessary configuration
 - Then ```php app/console server:start```
 
 This will start a development server
@@ -18,3 +19,11 @@ This will start a development server
 ### Database
 
 JIRAstic uses MySQL. Configure the necessary trough ```app/config/paramters.yml``` if not already done when running ```composer install```.
+
+Make sure the databasename doesn't already exist and run:
+
+```php bin/console doctrine:database:create```
+
+and then: 
+
+```php bin/console doctrine:schema:update --force```
