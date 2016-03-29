@@ -22,11 +22,11 @@ JIRAstic uses MySQL. Configure the necessary details trough ```app/config/paramt
 
 Make sure the databasename doesn't already exist and run:
 
-```php bin/console doctrine:database:create```
+```php app/console doctrine:database:create```
 
 and then: 
 
-```php bin/console doctrine:schema:update --force```
+```php app/console doctrine:schema:update --force```
 
 ## Unit Tests
 
