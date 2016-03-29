@@ -17,7 +17,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    locale: de
+    locale: en
 
     #auth
     jirastic_api_url:   https://issue.swisscom.ch
@@ -27,9 +27,9 @@ parameters:
     jirastic_classes:   {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}
 
     jirastic_font_awesome_icons:
-          - fa-check-circle-o
-          - fa-cog
-          - fa-exclamation-triangle
+        fa-check-circle-o: fa-check-circle-o
+        fa-cog: fa-cog
+        fa-exclamation-triangle: fa-exclamation-triangle
 
     jirastic_show_sprints_x_months_back: 6
 
