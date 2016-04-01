@@ -45,24 +45,56 @@ class IssueRepository implements IssueRepositoryInterface
      * @var Container
      */
     private $container;
+    
+    /**
+     * @var string
+     */
+    private $testInstructionFieldId;
+    
+    /**
+     * @var string
+     */
+    private $storyPointsFieldId;
+    
+    /**
+     * @var string
+     */
+    private $storyPointsEstimateFieldId;
+    
+    /**
+     * @var string
+     */
+    private $ownerFieldId;
 
     /**
-     * IssueRepository constructor.
-     * @param JiraGateway    $jiraGateway    Gateway
-     * @param IssuePrototype $issuePrototype Issue Prototype
-     * @param ConfigUtils    $configUtils    ConfigUtils
-     * @param Container      $container      Container
+     * IssueRepository constructor
+     * @param JiraGateway    $jiraGateway                Gateway
+     * @param IssuePrototype $issuePrototype             Issue Prototype
+     * @param ConfigUtils    $configUtils                ConfigUtils
+     * @param Container      $container                  Container
+     * @param string         $testInstructionFieldId     testInstructionFieldId
+     * @param string         $storyPointsFieldId         storyPointsFieldId
+     * @param string         $storyPointsEstimateFieldId storyPointsEstimateFieldId
+     * @param string         $ownerFieldId               ownerFieldId
      */
     public function __construct(
         JiraGateway $jiraGateway,
         IssuePrototype $issuePrototype,
         ConfigUtils $configUtils,
-        Container $container
+        Container $container,
+        $testInstructionFieldId,
+        $storyPointsFieldId,
+        $storyPointsEstimateFieldId,
+        $ownerFieldId
     ) {
         $this->jiraGateway = $jiraGateway;
         $this->issuePrototype = $issuePrototype;
         $this->configUtils = $configUtils;
         $this->container = $container;
+        $this->testInstructionFieldId = $testInstructionFieldId;
+        $this->storyPointsFieldId = $storyPointsFieldId;
+        $this->storyPointsEstimateFieldId = $storyPointsEstimateFieldId;
+        $this->ownerFieldId = $ownerFieldId;
     }
 
     /**
@@ -113,32 +145,30 @@ class IssueRepository implements IssueRepositoryInterface
 
             $issueObj->setId($issue->id);
             $issueObj->setSummary($issue->fields->summary);
-            $issueObj->setTestInstruction(
-                $issue->renderedFields->{'customfield_'.$this->container->getParameter(
-                    'jirastic_testInstructionFieldId'
-                )}
-            );
             $issueObj->setCreatorName($issue->fields->creator->displayName);
             $issueObj->setDescription($issue->renderedFields->description);
-
-
-            $ownerFieldId = $this->container->getParameter('jirastic_ownerNameFieldId');
-            if ($issue->fields->{'customfield_'.'16025'}) {
-                $issueObj->setOwnerName($issue->fields->{'customfield_'.$ownerFieldId}->displayName);
+            
+            if (property_exists($issue->renderedFields, 'customfield_'.$this->testInstructionFieldId)) {
+                $issueObj->setTestInstruction(
+                    $issue->renderedFields->{'customfield_'.$this->testInstructionFieldId}
+                );
+            }
+            
+            $ownerName = 'customfield_'.$this->ownerFieldId;
+            if (property_exists($issue->fields, $ownerName) && isset($issue->fields->{$ownerName})) {
+                $issueObj->setOwnerName($issue->fields->{'customfield_'.$this->ownerFieldId}->displayName);
             }
 
             if (isset($issue->fields->assignee->displayName)) {
                 $issueObj->setAssigneeName($issue->fields->assignee->displayName);
             }
-
-            $storyPointsFieldId = $this->container->getParameter('jirastic_storyPointsFieldId');
-            if (isset($issue->fields->{'customfield_'.$storyPointsFieldId})) {
-                $issueObj->setStoryPoints($issue->fields->{'customfield_'.$storyPointsFieldId});
+            
+            if (property_exists($issue->fields, 'customfield_'.$this->storyPointsFieldId)) {
+                $issueObj->setStoryPoints($issue->fields->{'customfield_'.$this->storyPointsFieldId});
             }
 
-            $storyPointsEstimateFieldId = $this->container->getParameter('jirastic_storyPointsEstimateFieldId');
-            if (isset($issue->fields->{'customfield_'.$storyPointsEstimateFieldId})) {
-                $issueObj->setStoryPointsEstimate($issue->fields->{'customfield_'.$storyPointsEstimateFieldId});
+            if (property_exists($issue->fields, 'customfield_'.$this->storyPointsEstimateFieldId)) {
+                $issueObj->setStoryPointsEstimate($issue->fields->{'customfield_'.$this->storyPointsEstimateFieldId});
             }
 
             $mappedIssues[$statusMapping[$statusId]]['issues'][] = $issueObj;
