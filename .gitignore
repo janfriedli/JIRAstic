@@ -25,6 +25,7 @@
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
+/web/reveal/
 
 # Assets managed by Bower
 /web/assets/vendor/
@@ -38,3 +39,4 @@
 
 # phpstorm
 .idea/
+
