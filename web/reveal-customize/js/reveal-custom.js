@@ -3,6 +3,7 @@ Reveal.addEventListener( 'ready', function( event ) {
     Reveal.addEventListener( 'slidechanged', function( event ) {
         Reveal.getTotalSlides();
         if(Reveal.isLastSlide()){
+            $("#jirastic-spinner").html('<div id="reload-overlay"><i id="spinner" class="fa fa-refresh fa-spin"></i></div>');
             setTimeout(function(){location.reload()}, 100);
         }
     } );
