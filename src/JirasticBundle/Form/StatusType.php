@@ -4,6 +4,7 @@
  */
 namespace JirasticBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,7 +50,7 @@ class StatusType extends AbstractType
     {
         $builder->add('title')
                 ->add('titleShort')
-                ->add('bgcolor')
+                ->add('bgcolor', null, array( 'attr'=> array( 'class'=>'jscolor')))
                 ->add(
                     'icon',
                     ChoiceType::class,
@@ -71,7 +72,10 @@ class StatusType extends AbstractType
                     array(
                         'class' => 'JirasticBundle:StatusMapping',
                         'choice_label' => 'name',
-                        'multiple' => true
+                        'multiple' => true,
+                        'query_builder' => function (EntityRepository $repository) {
+                            return $repository->createQueryBuilder('mapping')->orderBy('mapping.name', 'ASC');
+                        }
                     )
                 );
     }
