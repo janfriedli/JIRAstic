@@ -58,3 +58,15 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    firewall_names: [secured_area]
+    resource_owners:
+        any_name:
+            type:                jira
+            client_id:           "%jira.client_id%"
+            client_secret:       "%jira.client_secret%"
+            # Base URL of your Jira installation with no trailing slash (e.g. https://example.com/jira)
+            base_url:            "%jirastic_api_url%"
+

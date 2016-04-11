@@ -19,6 +19,9 @@ parameters:
 
     locale: en
 
+    jira.client_id: "some client id"
+    jira.client_secret: "some secret"
+
     #auth
     jirastic_api_url:   https://issue.swisscom.ch
     jirastic_username:
