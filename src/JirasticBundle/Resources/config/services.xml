@@ -23,6 +23,11 @@
             <argument>%jirastic_classes%</argument>
         </service>
 
+        <service id="jirastic.form.type.status" class="JirasticBundle\Form\CustomfieldType">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument>%jirastic_api_customfields_endpoint%</argument>
+        </service>
+
         <service id="jirastic.form.type.board" class="JirasticBundle\Form\BoardType">
             <argument type="service" id="jirastic.form.type.status" />
         </service>

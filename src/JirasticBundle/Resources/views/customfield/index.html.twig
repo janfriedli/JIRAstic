@@ -1,12 +1,11 @@
 {% extends "securityBase.html.twig" %}
 
 {% block content %}
-    <h1>Customfield list</h1>
+    <h1>Customfields</h1>
 
     <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Testinstructions</th>
                 <th>Storypoints</th>
                 <th>Storypointsestimated</th>
@@ -17,29 +16,15 @@
         <tbody>
         {% for customfield in customfields %}
             <tr>
-                <td><a href="{{ path('admin_customfield_show', { 'id': customfield.id }) }}">{{ customfield.id }}</a></td>
                 <td>{{ customfield.testInstructions }}</td>
                 <td>{{ customfield.storyPoints }}</td>
                 <td>{{ customfield.storyPointsEstimated }}</td>
                 <td>{{ customfield.storyOwner }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_customfield_show', { 'id': customfield.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_customfield_edit', { 'id': customfield.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('admin_customfield_edit', { 'id': customfield.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </tabled>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_customfield_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    </table>
 {% endblock %}

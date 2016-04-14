@@ -34,6 +34,7 @@ parameters:
     jirastic_show_sprints_x_months_back: 6
 
     # customfields
+    jirastic_api_customfields_endpoint: /rest/api/2/field
     jirastic_testInstructionFieldId: 10478
     jirastic_storyPointsFieldId: 10150
     jirastic_storyPointsEstimateFieldId: 12223

@@ -28,6 +28,10 @@ class CustomfieldController extends Controller
 
         $customfields = $em->getRepository('JirasticBundle:Customfield')->findAll();
 
+        if(!$customfields) {
+            return $this->redirectToRoute('admin_customfield_new');
+        }
+
         return $this->render('JirasticBundle:customfield:index.html.twig', array(
             'customfields' => $customfields,
         ));
@@ -42,7 +46,7 @@ class CustomfieldController extends Controller
     public function newAction(Request $request)
     {
         $customfield = new Customfield();
-        $form = $this->createForm('JirasticBundle\Form\CustomfieldType', $customfield);
+        $form = $this->createForm($this->get("jirastic.form.type.status"), $customfield);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,28 +54,12 @@ class CustomfieldController extends Controller
             $em->persist($customfield);
             $em->flush();
 
-            return $this->redirectToRoute('admin_customfield_show', array('id' => $customfield->getId()));
+            return $this->redirectToRoute('admin_customfield_index', array('id' => $customfield->getId()));
         }
 
         return $this->render('JirasticBundle:customfield:new.html.twig', array(
             'customfield' => $customfield,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a Customfield entity.
-     *
-     * @Route("/{id}", name="admin_customfield_show")
-     * @Method("GET")
-     */
-    public function showAction(Customfield $customfield)
-    {
-        $deleteForm = $this->createDeleteForm($customfield);
-
-        return $this->render('JirasticBundle:customfield:show.html.twig', array(
-            'customfield' => $customfield,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -83,8 +71,7 @@ class CustomfieldController extends Controller
      */
     public function editAction(Request $request, Customfield $customfield)
     {
-        $deleteForm = $this->createDeleteForm($customfield);
-        $editForm = $this->createForm('JirasticBundle\Form\CustomfieldType', $customfield);
+        $editForm = $this->createForm($this->get("jirastic.form.type.status"), $customfield);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -92,49 +79,12 @@ class CustomfieldController extends Controller
             $em->persist($customfield);
             $em->flush();
 
-            return $this->redirectToRoute('admin_customfield_edit', array('id' => $customfield->getId()));
+            return $this->redirectToRoute('admin_customfield_index', array('id' => $customfield->getId()));
         }
 
         return $this->render('JirasticBundle:customfield:edit.html.twig', array(
             'customfield' => $customfield,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
-    }
-
-    /**
-     * Deletes a Customfield entity.
-     *
-     * @Route("/{id}", name="admin_customfield_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Customfield $customfield)
-    {
-        $form = $this->createDeleteForm($customfield);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($customfield);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('admin_customfield_index');
-    }
-
-    /**
-     * Creates a form to delete a Customfield entity.
-     *
-     * @param Customfield $customfield The Customfield entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Customfield $customfield)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_customfield_delete', array('id' => $customfield->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

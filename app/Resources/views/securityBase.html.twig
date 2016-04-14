@@ -48,6 +48,7 @@
             </button>
             {% if is_granted('ROLE_ADMIN') %}
                 <a class="navbar-brand" href="{{ path('admin_board_index') }}"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
+                <a class="navbar-brand" href="{{ path('admin_customfield_index') }}"><i class="fa fa-cog"></i> {% trans %}Customfields{% endtrans %}</a>
             {% else %}
                 <a class="navbar-brand" href="{{ path('boards') }}"><i class="fa fa-home"></i> JIRAstic</a>
             {% endif %}
