@@ -24,21 +24,21 @@ class Customfield
     /**
      * @var string
      *
-     * @ORM\Column(name="test_instructions", type="string", length=15, unique=true)
+     * @ORM\Column(name="test_instructions", type="string", length=100, unique=true)
      */
     private $testInstructions;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="story_points", type="string", length=15, unique=true)
+     * @ORM\Column(name="story_points", type="string", length=100, unique=true)
      */
     private $storyPoints;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="story_points_estimated", type="string", length=15, unique=true)
+     * @ORM\Column(name="story_points_estimated", type="string", length=100, unique=true)
      */
     private $storyPointsEstimated;
 

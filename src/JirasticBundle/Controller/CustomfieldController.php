@@ -46,7 +46,7 @@ class CustomfieldController extends Controller
     public function newAction(Request $request)
     {
         $customfield = new Customfield();
-        $form = $this->createForm($this->get("jirastic.form.type.status"), $customfield);
+        $form = $this->createForm($this->get("jirastic.form.type.customfield"), $customfield);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -71,7 +71,7 @@ class CustomfieldController extends Controller
      */
     public function editAction(Request $request, Customfield $customfield)
     {
-        $editForm = $this->createForm($this->get("jirastic.form.type.status"), $customfield);
+        $editForm = $this->createForm($this->get("jirastic.form.type.customfield"), $customfield);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

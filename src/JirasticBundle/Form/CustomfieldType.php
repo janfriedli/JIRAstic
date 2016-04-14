@@ -38,7 +38,6 @@ class CustomfieldType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {      
         $repsonse = $this->jiraGateway->getRequest($this->customfieldsUrl);
-
         $customfields = array();
         foreach($repsonse as $customfield) {
             $customfields[$customfield->id] = $customfield->name;
@@ -49,9 +48,9 @@ class CustomfieldType extends AbstractType
         $builder
             ->add('testInstructions',
                 ChoiceType::class,
-                    array(
-                        'choices' => $customfields
-                    ))
+                array(
+                    'choices' => $customfields
+                ))
             ->add('storyPoints',
                 ChoiceType::class,
                 array(
