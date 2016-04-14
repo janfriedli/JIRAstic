@@ -7,6 +7,7 @@
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
         <input class="btn btn-success" type="submit" value="Edit" />
+        <a href="{{ path('admin_customfield_index')}}" type="button" class="btn btn-danger">Abort</a>
     {{ form_end(edit_form) }}
 
 {% endblock %}

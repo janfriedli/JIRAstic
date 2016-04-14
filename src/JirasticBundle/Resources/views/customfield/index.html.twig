@@ -10,7 +10,7 @@
                 <th>Storypoints</th>
                 <th>Storypointsestimated</th>
                 <th>Storyowner</th>
-                <th>Actions</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,8 @@
                 <td>{{ customfield.storyPointsEstimated }}</td>
                 <td>{{ customfield.storyOwner }}</td>
                 <td>
-                    <a href="{{ path('admin_customfield_edit', { 'id': customfield.id }) }}">edit</a>
+                    <a href="{{ path('admin_customfield_edit', { 'id': customfield.id }) }}"><i class="fa fa-cog"> Edit</i>
+                    </a>
                 </td>
             </tr>
         {% endfor %}
