@@ -2,12 +2,12 @@
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block content %}
-    <h1>Customfield edit</h1>
+    <h1>{% trans %}edit Customfields{% endtrans %}</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input class="btn btn-success" type="submit" value="Edit" />
-        <a href="{{ path('admin_customfield_index')}}" type="button" class="btn btn-danger">Abort</a>
+        <input class="btn btn-success" type="submit" value="{% trans %}Edit{% endtrans %}" />
+        <a href="{{ path('admin_customfield_index')}}" type="button" class="btn btn-danger">{% trans %}Abort{% endtrans %}</a>
     {{ form_end(edit_form) }}
 
 {% endblock %}
