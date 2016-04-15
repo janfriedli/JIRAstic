@@ -45,26 +45,6 @@ class IssueRepository implements IssueRepositoryInterface
      * @var Container
      */
     private $container;
-    
-    /**
-     * @var string
-     */
-    private $testInstructionFieldId;
-    
-    /**
-     * @var string
-     */
-    private $storyPointsFieldId;
-    
-    /**
-     * @var string
-     */
-    private $storyPointsEstimateFieldId;
-    
-    /**
-     * @var string
-     */
-    private $ownerFieldId;
 
     /**
      * IssueRepository constructor
@@ -72,29 +52,17 @@ class IssueRepository implements IssueRepositoryInterface
      * @param IssuePrototype $issuePrototype             Issue Prototype
      * @param ConfigUtils    $configUtils                ConfigUtils
      * @param Container      $container                  Container
-     * @param string         $testInstructionFieldId     testInstructionFieldId
-     * @param string         $storyPointsFieldId         storyPointsFieldId
-     * @param string         $storyPointsEstimateFieldId storyPointsEstimateFieldId
-     * @param string         $ownerFieldId               ownerFieldId
      */
     public function __construct(
         JiraGateway $jiraGateway,
         IssuePrototype $issuePrototype,
         ConfigUtils $configUtils,
-        Container $container,
-        $testInstructionFieldId,
-        $storyPointsFieldId,
-        $storyPointsEstimateFieldId,
-        $ownerFieldId
+        Container $container
     ) {
         $this->jiraGateway = $jiraGateway;
         $this->issuePrototype = $issuePrototype;
         $this->configUtils = $configUtils;
         $this->container = $container;
-        $this->testInstructionFieldId = $testInstructionFieldId;
-        $this->storyPointsFieldId = $storyPointsFieldId;
-        $this->storyPointsEstimateFieldId = $storyPointsEstimateFieldId;
-        $this->ownerFieldId = $ownerFieldId;
     }
 
     /**
