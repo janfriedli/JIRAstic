@@ -70,6 +70,12 @@
 </nav>
 
 <div class="top col-md-8 col-md-offset-2">
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ flash_message }}</strong>
+        </div>
+    {% endfor %}
 {% block content %}
 {% endblock %}
 

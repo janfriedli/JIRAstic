@@ -54,6 +54,11 @@ class CustomfieldController extends Controller
             $em->persist($customfield);
             $em->flush();
 
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
+
             return $this->redirectToRoute('admin_customfield_index', array('id' => $customfield->getId()));
         }
 
@@ -78,6 +83,11 @@ class CustomfieldController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($customfield);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
 
             return $this->redirectToRoute('admin_customfield_index', array('id' => $customfield->getId()));
         }
