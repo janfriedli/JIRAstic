@@ -73,7 +73,7 @@ class StatusType extends AbstractType
                         'class' => 'JirasticBundle:StatusMapping',
                         'choice_label' => 'name',
                         'multiple' => true,
-                        'query_builder' => function(EntityRepository $repository) {
+                        'query_builder' => function (EntityRepository $repository) {
                             return $repository->createQueryBuilder('mapping')->orderBy('mapping.name', 'ASC');
                         }
                     )

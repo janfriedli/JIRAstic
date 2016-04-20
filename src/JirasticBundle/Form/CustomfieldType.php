@@ -1,4 +1,7 @@
 <?php
+/**
+ * Customfield Form
+ */
 
 namespace JirasticBundle\Form;
 
@@ -8,7 +11,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-
+/**
+ * @package JirasticBundle\Repository
+ * @author   Jan Friedli <jan.friedli@swisscom.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 Public License
+ * @link     http://www.swisscom.ch
+ *
+ * Class CustomfieldType
+ */
 class CustomfieldType extends AbstractType
 {
     /**
@@ -23,7 +33,8 @@ class CustomfieldType extends AbstractType
 
     /**
      * CustomfieldType constructor.
-     * @param JiraGateway $jiraGateway JiraGateway
+     * @param JiraGateway $jiraGateway     Jira Gateway
+     * @param string      $customfieldsUrl Customfields Service endpoint
      */
     public function __construct(JiraGateway $jiraGateway, $customfieldsUrl)
     {
@@ -32,50 +43,61 @@ class CustomfieldType extends AbstractType
     }
     
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param FormBuilderInterface $builder Builder
+     * @param array                $options Options
+     * @return Builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {      
+    {
         $repsonse = $this->jiraGateway->getRequest($this->customfieldsUrl);
         $customfields = array();
-        foreach($repsonse as $customfield) {
+        foreach ($repsonse as $customfield) {
             $customfields[$customfield->id] = $customfield->name;
         }
 
         array_multisort($customfields, SORT_ASC, $repsonse);
 
         $builder
-            ->add('testInstructions',
+            ->add(
+                'testInstructions',
                 ChoiceType::class,
                 array(
                     'choices' => $customfields
-                ))
-            ->add('storyPoints',
+                )
+            )
+            ->add(
+                'storyPoints',
                 ChoiceType::class,
                 array(
                     'choices' => $customfields
-                ))
-            ->add('storyPointsEstimated',
+                )
+            )
+            ->add(
+                'storyPointsEstimated',
                 ChoiceType::class,
                 array(
                     'choices' => $customfields
-                ))
-            ->add('storyOwner',
+                )
+            )
+            ->add(
+                'storyOwner',
                 ChoiceType::class,
                 array(
                     'choices' => $customfields
-                ))
-        ;
+                )
+            );
     }
     
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolver $resolver Resolver
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'JirasticBundle\Entity\Customfield'
-        ));
+            )
+        );
     }
 }

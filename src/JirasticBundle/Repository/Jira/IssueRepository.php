@@ -48,10 +48,10 @@ class IssueRepository implements IssueRepositoryInterface
 
     /**
      * IssueRepository constructor
-     * @param JiraGateway    $jiraGateway                Gateway
-     * @param IssuePrototype $issuePrototype             Issue Prototype
-     * @param ConfigUtils    $configUtils                ConfigUtils
-     * @param Container      $container                  Container
+     * @param JiraGateway    $jiraGateway    Gateway
+     * @param IssuePrototype $issuePrototype Issue Prototype
+     * @param ConfigUtils    $configUtils    ConfigUtils
+     * @param Container      $container      Container
      */
     public function __construct(
         JiraGateway $jiraGateway,

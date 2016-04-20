@@ -28,7 +28,7 @@ class CustomfieldController extends Controller
 
         $customfields = $em->getRepository('JirasticBundle:Customfield')->findAll();
 
-        if(!$customfields) {
+        if (!$customfields) {
             return $this->redirectToRoute('admin_customfield_new');
         }
 

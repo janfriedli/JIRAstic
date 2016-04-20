@@ -1,14 +1,21 @@
 <?php
-
+/**
+ * Customfield
+ */
 namespace JirasticBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Customfield
- *
  * @ORM\Table(name="customfield")
  * @ORM\Entity(repositoryClass="JirasticBundle\Repository\CustomfieldRepository")
+ * @package JirasticBundle\Repository
+ * @author   Jan Friedli <jan.friedli@swisscom.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 Public License
+ * @link     http://www.swisscom.ch
+ *
+ * Class Customfield
  */
 class Customfield
 {
@@ -25,6 +32,11 @@ class Customfield
      * @var string
      *
      * @ORM\Column(name="test_instructions", type="string", length=100, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="This value needs to be a string"
+     * )
      */
     private $testInstructions;
 
@@ -32,6 +44,11 @@ class Customfield
      * @var string
      *
      * @ORM\Column(name="story_points", type="string", length=100, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="This value needs to be a string"
+     * )
      */
     private $storyPoints;
 
@@ -39,6 +56,11 @@ class Customfield
      * @var string
      *
      * @ORM\Column(name="story_points_estimated", type="string", length=100, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="This value needs to be a string"
+     * )
      */
     private $storyPointsEstimated;
 
@@ -46,6 +68,11 @@ class Customfield
      * @var string
      *
      * @ORM\Column(name="story_owner", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="This value needs to be a string"
+     * )
      */
     private $storyOwner;
 
@@ -53,7 +80,7 @@ class Customfield
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +103,7 @@ class Customfield
     /**
      * Get testInstructions
      *
-     * @return string 
+     * @return string
      */
     public function getTestInstructions()
     {
@@ -99,7 +126,7 @@ class Customfield
     /**
      * Get storyPoints
      *
-     * @return string 
+     * @return string
      */
     public function getStoryPoints()
     {
@@ -122,7 +149,7 @@ class Customfield
     /**
      * Get storyPointsEstimated
      *
-     * @return string 
+     * @return string
      */
     public function getStoryPointsEstimated()
     {
@@ -145,7 +172,7 @@ class Customfield
     /**
      * Get storyOwner
      *
-     * @return string 
+     * @return string
      */
     public function getStoryOwner()
     {
