@@ -73,7 +73,13 @@
     {% for flash_message in app.session.flashBag.get('notice') %}
         <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>{{ flash_message }}</strong>
+            <strong>{{ flash_message|trans }}</strong>
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('warning') %}
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ flash_message|trans }}</strong>
         </div>
     {% endfor %}
 {% block content %}

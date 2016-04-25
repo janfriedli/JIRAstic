@@ -117,30 +117,33 @@ class IssueRepository implements IssueRepositoryInterface
             $issueObj->setDescription($issue->renderedFields->description);
 
             $customfields = $this->configUtils->getCustomfields();
-            $testInstructions = $customfields->getTestinstructions();
-            if (property_exists($issue->renderedFields, $testInstructions)) {
-                $issueObj->setTestInstruction(
-                    $issue->renderedFields->{$testInstructions}
-                );
-            }
-            
-            $ownerName = $customfields->getStoryOwner();
-            if (property_exists($issue->fields, $ownerName) && isset($issue->fields->{$ownerName})) {
-                $issueObj->setOwnerName($issue->fields->{$ownerName}->displayName);
-            }
+            if($customfields) {
 
-            if (isset($issue->fields->assignee->displayName)) {
-                $issueObj->setAssigneeName($issue->fields->assignee->displayName);
-            }
+                $testInstructions = $customfields->getTestinstructions();
+                if (property_exists($issue->renderedFields, $testInstructions)) {
+                    $issueObj->setTestInstruction(
+                        $issue->renderedFields->{$testInstructions}
+                    );
+                }
 
-            $storyPoints = $customfields->getStoryPoints();
-            if (property_exists($issue->fields, $storyPoints)) {
-                $issueObj->setStoryPoints($issue->fields->{$storyPoints});
-            }
+                $ownerName = $customfields->getStoryOwner();
+                if (property_exists($issue->fields, $ownerName) && isset($issue->fields->{$ownerName})) {
+                    $issueObj->setOwnerName($issue->fields->{$ownerName}->displayName);
+                }
 
-            $storyPointsEstimated = $customfields->getStoryPointsEstimated();
-            if (property_exists($issue->fields, $storyPointsEstimated)) {
-                $issueObj->setStoryPointsEstimate($issue->fields->{$storyPointsEstimated});
+                if (isset($issue->fields->assignee->displayName)) {
+                    $issueObj->setAssigneeName($issue->fields->assignee->displayName);
+                }
+
+                $storyPoints = $customfields->getStoryPoints();
+                if (property_exists($issue->fields, $storyPoints)) {
+                    $issueObj->setStoryPoints($issue->fields->{$storyPoints});
+                }
+
+                $storyPointsEstimated = $customfields->getStoryPointsEstimated();
+                if (property_exists($issue->fields, $storyPointsEstimated)) {
+                    $issueObj->setStoryPointsEstimate($issue->fields->{$storyPointsEstimated});
+                }
             }
 
             $mappedIssues[$statusMapping[$statusId]]['issues'][] = $issueObj;

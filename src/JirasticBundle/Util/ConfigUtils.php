@@ -121,4 +121,13 @@ class ConfigUtils
         $customfields = $this->entityManager->getRepository('JirasticBundle:Customfield')->findOneBy(array('id' => 1));
         return $customfields;
     }
+
+    public function customFieldsSet()
+    {
+        if($this->getCustomfields()) {
+            return true;
+        } 
+        
+        return false;
+    }
 }

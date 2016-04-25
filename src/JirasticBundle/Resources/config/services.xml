@@ -48,6 +48,8 @@
             <argument type="service" id="jirastic.jira_api"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="jirastic.util.config"/>
+            <argument type="service" id="session"/>
         </service>
 
         <service id="jirastic.jira_api" class="JirasticBundle\Service\JiraAPI">
