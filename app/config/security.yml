@@ -39,7 +39,7 @@ security:
                         failure_path:      /login
 
                         oauth_user_provider:
-                            service: hwi_oauth.user.provider.entity
+                            service: hwi_oauth.user.provider
 
     role_hierarchy:
             ROLE_ADMIN: ROLE_JIRASTIC_USER
