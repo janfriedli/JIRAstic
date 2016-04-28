@@ -19,13 +19,13 @@ parameters:
 
     locale: en
 
-    jira.client_id: "some client id"
-    jira.client_secret: "some secret"
+
 
     #auth
     jirastic_api_url:   https://issue.swisscom.ch
-    jirastic_username:
-    jirastic_password:
+    jira.client_id: "some client id"
+    jira.client_secret: "some secret"
+
 
     jirastic_classes:   {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}
 
@@ -35,9 +35,3 @@ parameters:
         fa-exclamation-triangle: fa-exclamation-triangle
 
     jirastic_show_sprints_x_months_back: 6
-
-    # customfields
-    jirastic_testInstructionFieldId: 10478
-    jirastic_storyPointsFieldId: 10150
-    jirastic_storyPointsEstimateFieldId: 12223
-    jirastic_ownerNameFieldId: 16025
