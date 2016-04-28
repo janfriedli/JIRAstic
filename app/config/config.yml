@@ -69,4 +69,6 @@ hwi_oauth:
             client_secret:       "%jira.client_secret%"
             # Base URL of your Jira installation with no trailing slash (e.g. https://example.com/jira)
             base_url:            "%jirastic_api_url%"
+            options:
+                csrf: true
 
