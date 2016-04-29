@@ -28,7 +28,7 @@ class BoardLoaderUtils
     const URI = '/rest/agile/1.0/board?type=scrum';
 
     /**
-     * @var $jiraGateway
+     * @var JiraGateway
      */
     private $jiraGateway;
 
@@ -37,12 +37,16 @@ class BoardLoaderUtils
      */
     private $entityManager;
 
+    /**
+     * @var string
+     */
     private $rootDir;
 
     /**
      * LoadBoardData constructor.
-     * @param JiraGateway $jiraGateway JiraGateway
-     * @param ObjectManager $manager Object Manager
+     * @param JiraGateway   $jiraGateway   JiraGateway
+     * @param ObjectManager $entityManager The entity manager
+     * @param string        $rootDir       Application root path
      */
     public function __construct(JiraGateway $jiraGateway, ObjectManager $entityManager, $rootDir)
     {
@@ -72,7 +76,7 @@ class BoardLoaderUtils
 
         $this->entityManager->flush();
 
-        if($emptyDb) {
+        if ($emptyDb) {
             $process = new Process('php '.$this->rootDir.'/console doctrine:fixtures:load --no-interaction --append');
             $process->run();
             if (!$process->isSuccessful()) {
@@ -104,7 +108,7 @@ class BoardLoaderUtils
     private function checkIfDbIsEmtpy()
     {
         $result = $this->entityManager->getRepository('JirasticBundle:Board')->findAll();
-        if($result) {
+        if ($result) {
             return false;
         }
 
