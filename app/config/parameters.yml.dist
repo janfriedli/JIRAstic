@@ -23,8 +23,9 @@ parameters:
 
     #auth
     jirastic_api_url:   https://issue.swisscom.ch
-    jira.client_id: "some client id"
-    jira.client_secret: "some secret"
+    jira.consumer_key: somekey
+    jira.consumer_secret: somesecret
+    jira.private_key_path: /home/osboxes/Documents/JIRAstic/app/config/oauth/jira.pem
 
 
     jirastic_classes:   {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}

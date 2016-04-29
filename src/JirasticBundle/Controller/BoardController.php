@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JirasticBundle\Entity\Board;
+use JirasticBundle\Util\BoardLoaderUtils;
 
 /**
  * @package JirasticBundle\Controller
@@ -31,6 +32,9 @@ class BoardController extends Controller
      */
     public function indexAction()
     {
+        //make sure all boards are loaded from JIRA
+        $this->get('jirastic.utils.board_loader')->load();
+
         $em = $this->getDoctrine()->getManager();
         $boards = $em->getRepository('JirasticBundle:Board')->findAll();
 

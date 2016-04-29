@@ -57,7 +57,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "php app/console doctrine:fixtures:load --no-interaction",
             "rm -rf web/reveal && mkdir web/reveal",
             "cp -R vendor/hakimel/reveal.js/js web/reveal/",
             "cp -R vendor/hakimel/reveal.js/css web/reveal/",
