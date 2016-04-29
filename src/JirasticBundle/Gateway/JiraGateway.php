@@ -4,9 +4,10 @@
  */
 namespace JirasticBundle\Gateway;
 
+use Guzzle\Http\Client;
 use Guzzle\Http\Exception\RequestException;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Guzzle\Plugin\Oauth\OauthPlugin;
 
 /**
  * @package JirasticBundle\Gateway
@@ -26,24 +27,45 @@ class JiraGateway
     /**
      * @var string
      */
-    private $username;
+    private $rawToken;
 
     /**
      * @var string
      */
-    private $password;
+    private $privateKeyPath;
+
+    /**
+     * @var string
+     */
+    private $consumerKey;
+
+    /**
+     * @var string
+     */
+    private $consumerSecret;
+
 
     /**
      * JiraGateway constructor.
-     * @param string              $username Username
-     * @param string              $password Password
-     * @param \Guzzle\Http\Client $guzzle   Guzzle
+     * @param Client                $guzzle         Guzzle client
+     * @param TokenStorageInterface $tokenStorage   Token storage
+     * @param string                $privateKeyPath Path to private key
+     * @param string                $consumerKey    Consumer key
+     * @param string                $consumerSecret Consumer secret
      */
-    public function __construct($username, $password, \Guzzle\Http\Client $guzzle)
-    {
+    public function __construct(
+        \Guzzle\Http\Client $guzzle,
+        TokenStorageInterface $tokenStorage,
+        $privateKeyPath,
+        $consumerKey,
+        $consumerSecret
+    ) {
         $this->guzzle = $guzzle;
-        $this->username = $username;
-        $this->password = $password;
+        $this->rawToken = $tokenStorage->getToken()->getRawToken();
+        $this->privateKeyPath = $privateKeyPath;
+        $this->consumerKey = $consumerKey;
+        $this->consumerSecret = $consumerSecret;
+        $this->prepareClientForOauth();
     }
 
     /**
@@ -56,15 +78,12 @@ class JiraGateway
     public function getRequest($url, $params = array())
     {
         try {
-
             $request = $this->guzzle->get(
                 vsprintf(
                     $url,
                     $params
                 )
             );
-            $this->validateUrl($url, $params, $request);
-            $request->setAuth($this->username, $this->password);
             $response = $request->send();
 
         } catch (RequestException $e) {
@@ -77,21 +96,40 @@ class JiraGateway
     }
 
     /**
-     * Since vsprintf does not throw an error and I found no option for guzzle I use a custom validation
-     * @todo it actually doesn't do a type check
-     *
-     * @param string  $url     URL
-     * @param array   $params  Parameters
-     * @param Request $request Request
-     * @throws BadRequestHttpException
-     * @return void
+     * @return Client Prepares the client to sign OAuth requests
      */
-    private function validateUrl($url, $params, $request)
+    public function prepareClientForOauth()
     {
-        if ($request->getUrl() === $url && !empty($params)) {
-            if (substr_count($request->geturl()) === count($params)) {
-                throw new BadRequestHttpException();
-            }
-        }
+            $privateKey = $this->privateKeyPath;
+        
+            $oauthPlugin = new OauthPlugin(
+                array(
+                    'consumer_key'       => $this->consumerKey,
+                    'consumer_secret'    => $this->consumerSecret,
+                    'token'              => $this->rawToken['oauth_token'],
+                    'token_secret'       => $this->rawToken['oauth_token_secret'],
+                    'signature_method'   => 'RSA-SHA1',
+                    'signature_callback' => function ($stringToSign, $key) use ($privateKey) {
+                        if (!file_exists($privateKey)) {
+                            throw new \InvalidArgumentException("Private key {$privateKey} does not exist");
+                        }
+
+                        $certificate = openssl_pkey_get_private('file://' . $privateKey);
+
+                        $privateKeyId = openssl_get_privatekey($certificate);
+
+                        $signature = null;
+
+                        openssl_sign($stringToSign, $signature, $privateKeyId);
+                        openssl_free_key($privateKeyId);
+
+                        return $signature;
+                    }
+                )
+            );
+
+            $this->guzzle->addSubscriber($oauthPlugin);
+
+            return $this->guzzle;
     }
 }

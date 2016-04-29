@@ -26,7 +26,7 @@ This will start a development server
     * jira.client_id -> Consumer Key
     * jira.client_secret -> absolute path to your private key file.
     * jirastic_api_url -> the URL to your JIRA instance. NO trailing slash at the end.
-    
+
 ### Database
 
 JIRAstic uses MySQL. Configure the necessary details trough ```app/config/paramters.yml``` if not already done when running ```composer install```.

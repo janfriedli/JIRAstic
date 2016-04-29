@@ -65,8 +65,8 @@ hwi_oauth:
     resource_owners:
         jira:
             type:                jira
-            client_id:           "%jira.client_id%"
-            client_secret:       "%jira.client_secret%"
+            client_id:           "%jira.consumer_key%"
+            client_secret:       "%jira.private_key_path%"
             # Base URL of your Jira installation with no trailing slash (e.g. https://example.com/jira)
             base_url:            "%jirastic_api_url%"
             options:

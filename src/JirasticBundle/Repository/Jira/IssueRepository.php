@@ -40,61 +40,21 @@ class IssueRepository implements IssueRepositoryInterface
      * @var ConfigUtils
      */
     private $configUtils;
-
-    /**
-     * @var Container
-     */
-    private $container;
     
-    /**
-     * @var string
-     */
-    private $testInstructionFieldId;
-    
-    /**
-     * @var string
-     */
-    private $storyPointsFieldId;
-    
-    /**
-     * @var string
-     */
-    private $storyPointsEstimateFieldId;
-    
-    /**
-     * @var string
-     */
-    private $ownerFieldId;
-
     /**
      * IssueRepository constructor
-     * @param JiraGateway    $jiraGateway                Gateway
-     * @param IssuePrototype $issuePrototype             Issue Prototype
-     * @param ConfigUtils    $configUtils                ConfigUtils
-     * @param Container      $container                  Container
-     * @param string         $testInstructionFieldId     testInstructionFieldId
-     * @param string         $storyPointsFieldId         storyPointsFieldId
-     * @param string         $storyPointsEstimateFieldId storyPointsEstimateFieldId
-     * @param string         $ownerFieldId               ownerFieldId
+     * @param JiraGateway    $jiraGateway    Gateway
+     * @param IssuePrototype $issuePrototype Issue Prototype
+     * @param ConfigUtils    $configUtils    ConfigUtils
      */
     public function __construct(
         JiraGateway $jiraGateway,
         IssuePrototype $issuePrototype,
-        ConfigUtils $configUtils,
-        Container $container,
-        $testInstructionFieldId,
-        $storyPointsFieldId,
-        $storyPointsEstimateFieldId,
-        $ownerFieldId
+        ConfigUtils $configUtils
     ) {
         $this->jiraGateway = $jiraGateway;
         $this->issuePrototype = $issuePrototype;
         $this->configUtils = $configUtils;
-        $this->container = $container;
-        $this->testInstructionFieldId = $testInstructionFieldId;
-        $this->storyPointsFieldId = $storyPointsFieldId;
-        $this->storyPointsEstimateFieldId = $storyPointsEstimateFieldId;
-        $this->ownerFieldId = $ownerFieldId;
     }
 
     /**
