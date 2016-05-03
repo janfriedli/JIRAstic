@@ -59,9 +59,20 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: JirasticBundle\Entity\User
+
 hwi_oauth:
+    connect:
+            account_connector: my.custom.user_provider
     # list of names of the firewalls in which this bundle is active, this setting MUST be set
     firewall_names: [secured_area]
+    fosub:
+            username_iterations: 30
+            properties:
+                jira:    jiraId
     resource_owners:
         jira:
             type:                jira
@@ -72,3 +83,7 @@ hwi_oauth:
             options:
                 csrf: true
 
+services:
+    my.custom.user_provider:
+        class:        MyBundle\Security\Core\User\MyFOSUBUserProvider
+        arguments: ['@fos_user.user_manager', { jira: jira_id }]
