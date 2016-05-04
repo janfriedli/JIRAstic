@@ -4,6 +4,8 @@ Presentation: Präsentation
 Login with JIRA: Mit JIRA anmelden
 Login: einloggen
 An error occured: Ein Fehler ist aufgetreten
+Boards: Boards
+Hi: Hallo
 
 #Config overview
 Configurable Boards: Editierbare Boards
@@ -19,6 +21,7 @@ Save changes: Speichern
 Title: Titel
 Title short: Kurztitel
 Bgcolor: Hintergrundfarbe (Hex)
+Icon: Icon
 Icon: Icon
 Class: CSS Klasse
 Order id: Reihenfolge

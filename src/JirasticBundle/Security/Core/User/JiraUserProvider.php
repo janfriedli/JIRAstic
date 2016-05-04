@@ -1,14 +1,27 @@
 <?php
+/**
+ * User Provider
+ */
 namespace JirasticBundle\Security\Core\User;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseFOSUBProvider;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @package JirasticBundle\Entity
+ * @author   Jan Friedli <jan.friedli@swisscom.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 Public License
+ * @link     http://www.swisscom.ch
+ *
+ * Class User Provider
+ */
 class JiraUserProvider extends BaseFOSUBProvider
 {
     /**
-     * {@inheritDoc}
+     * @param UserInterface         $user     User
+     * @param UserResponseInterface $response Response
+     * @return void
      */
     public function connect(UserInterface $user, UserResponseInterface $response)
     {
@@ -17,22 +30,23 @@ class JiraUserProvider extends BaseFOSUBProvider
         //on connect - get the access token and the user ID
         $service = $response->getResourceOwner()->getName();
         $setter = 'set'.ucfirst($service);
-        $setter_id = $setter.'Id';
-        $setter_token = $setter.'AccessToken';
+        $setterId = $setter.'Id';
+        $setterToken = $setter.'AccessToken';
         //we "disconnect" previously connected users
         if (null !== $previousUser = $this->userManager->findUserBy(array($property => $username))) {
-            $previousUser->$setter_id(null);
-            $previousUser->$setter_token(null);
+            $previousUser->$setterId(null);
+            $previousUser->$setterToken(null);
             $this->userManager->updateUser($previousUser);
         }
         //we connect current user
-        $user->$setter_id($username);
-        $user->$setter_token($response->getAccessToken());
+        $user->$setterId($username);
+        $user->$setterToken($response->getAccessToken());
         $this->userManager->updateUser($user);
     }
 
     /**
-     * {@inheritdoc}
+     * @param UserResponseInterface $response The Response Object
+     * @return \FOS\UserBundle\Model\UserInterface|UserInterface
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
@@ -42,12 +56,12 @@ class JiraUserProvider extends BaseFOSUBProvider
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
             $setter = 'set'.ucfirst($service);
-            $setter_id = $setter.'Id';
-            $setter_token = $setter.'AccessToken';
+            $setterId = $setter.'Id';
+            $setterToken = $setter.'AccessToken';
             // create new user here
             $user = $this->userManager->createUser();
-            $user->$setter_id($username);
-            $user->$setter_token($response->getAccessToken());
+            $user->$setterId($username);
+            $user->$setterToken($response->getAccessToken());
             //I have set all requested data with the user's username
             //modify here with relevant data
             $user->setUsername($username);

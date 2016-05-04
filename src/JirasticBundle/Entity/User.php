@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Entity/User.php
+/**
+ * User Entity
+ */
 
 namespace JirasticBundle\Entity;
 
@@ -7,8 +9,12 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @package JirasticBundle\Entity
+ * @author   Jan Friedli <jan.friedli@swisscom.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 Public License
+ * @link     http://www.swisscom.ch
+ *
+ * Class DefaultController
  */
 class User extends BaseUser
 {
@@ -29,14 +35,17 @@ class User extends BaseUser
      */
     private $jiraAccessToken;
 
+    /**
+     * User constructor.
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
 
     /**
-     * @param string $jiraId
+     * @param string $jiraId Jira Id
      * @return User
      */
     public function setJiraId($jiraId)
@@ -55,7 +64,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $jiraAccessToken
+     * @param string $jiraAccessToken Access token
      * @return User
      */
     public function setJiraAccessToken($jiraAccessToken)

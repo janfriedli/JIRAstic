@@ -115,7 +115,10 @@ class BoardLoaderUtils
         return true;
     }
 
-    //@todo implement this
+    /**
+     * @todo implement this
+     * @return void
+     */
     private function removeDeletedBoards()
     {
     }
