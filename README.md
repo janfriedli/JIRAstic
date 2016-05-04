@@ -12,9 +12,20 @@ This will start a development server
 
 ## Configuration
 
-### Security
+### OAuth
 
-1. Change Usernames and passwords in the ```app/config/security.yml``` file.
+1. JIRA use RSA. Create an Keypair:
+
+     ```openssl genrsa -out jira.pem 1024```
+
+     ```openssl rsa -in jira.pem -pubout -out jira.pub```
+
+2. Follow the steps in this tutorial to enable OAuth for JIRAstic: https://www.prodpad.com/2013/05/tech-tutorial-oauth-in-jira/
+
+3. Add the missing params to ``app/config/paramters.yml``
+    * jira.client_id -> Consumer Key
+    * jira.client_secret -> absolute path to your private key file.
+    * jirastic_api_url -> the URL to your JIRA instance. NO trailing slash at the end.
 
 ### Database
 

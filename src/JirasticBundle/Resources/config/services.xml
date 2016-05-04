@@ -37,9 +37,11 @@
         </service>
 
         <service id="jirastic.gateway.jira" class="JirasticBundle\Gateway\JiraGateway">
-            <argument>%jirastic_username%</argument>
-            <argument>%jirastic_password%</argument>
             <argument type="service" id="guzzle_client"/>
+            <argument type="service" id="security.token_storage"/>
+            <argument>%jira.private_key_path%</argument>
+            <argument>%jira.consumer_key%</argument>
+            <argument>%jira.consumer_secret%</argument>
         </service>
 
         <service id="jirastic.presentation.controller" class="JirasticBundle\Controller\PresentationController">
@@ -85,6 +87,15 @@
             <argument type="service" id="jirastic.prototype.issue"/>
             <argument type="service" id="jirastic.util.config"/>
             <argument type="service" id="service_container"/>
+<<<<<<< HEAD
+        </service>
+
+        <service id="jirastic.utils.board_loader" class="JirasticBundle\Util\BoardLoaderUtils">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%kernel.root_dir%</argument>
+=======
+>>>>>>> a787d65150ca08057079215c1de7498b98691f1d
         </service>
 
     </services>

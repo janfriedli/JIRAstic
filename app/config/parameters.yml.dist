@@ -19,10 +19,14 @@ parameters:
 
     locale: en
 
+
+
     #auth
     jirastic_api_url:   https://issue.swisscom.ch
-    jirastic_username:
-    jirastic_password:
+    jira.consumer_key: somekey
+    jira.consumer_secret: somesecret
+    jira.private_key_path: /home/osboxes/Documents/JIRAstic/app/config/oauth/jira.pem
+
 
     jirastic_classes:   {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}
 

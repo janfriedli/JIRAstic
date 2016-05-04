@@ -42,27 +42,21 @@ class IssueRepository implements IssueRepositoryInterface
     private $configUtils;
 
     /**
-     * @var Container
-     */
-    private $container;
-
-    /**
      * IssueRepository constructor
      * @param JiraGateway    $jiraGateway    Gateway
      * @param IssuePrototype $issuePrototype Issue Prototype
      * @param ConfigUtils    $configUtils    ConfigUtils
-     * @param Container      $container      Container
      */
     public function __construct(
         JiraGateway $jiraGateway,
         IssuePrototype $issuePrototype,
-        ConfigUtils $configUtils,
-        Container $container
+        ConfigUtils $configUtils
+
     ) {
         $this->jiraGateway = $jiraGateway;
         $this->issuePrototype = $issuePrototype;
         $this->configUtils = $configUtils;
-        $this->container = $container;
+
     }
 
     /**

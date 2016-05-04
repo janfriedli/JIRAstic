@@ -40,18 +40,18 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($state);
         }
 
+        //make sure we can find the states
+        $manager->flush();
+        $states = $manager->getRepository('JirasticBundle:Status')->findAll();
         $boards = $manager->getRepository('JirasticBundle:Board')->findAll();
 
         if (!$boards) {
             throw new Exception(
-                'Before loading the initialData make sure to'.
-                ' first log in to the admin interface, and be sure to use  --append'
+                'No boards available'
             );
         }
 
-        //make sure we can find the states
-        $manager->flush();
-        $states = $manager->getRepository('JirasticBundle:Status')->findAll();
+
 
         //@todo find a nicer way
         foreach ($boards as $board) {

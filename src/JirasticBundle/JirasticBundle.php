@@ -16,4 +16,12 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class JirasticBundle extends Bundle
 {
+    /**
+     * Used for the FOSUSerBundle template overriding
+     * @return string
+     */
+    public function getParent()
+    {
+        return 'FOSUserBundle';
+    }
 }
