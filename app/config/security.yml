@@ -33,9 +33,7 @@ security:
                 default_target_path: /boards
 
                 oauth_user_provider:
-                    service: hwi_oauth.user.provider.fosub_bridge
-
-        main:
+                    service: my.custom.user_provider
             pattern: ^/
             form_login:
                 provider: fos_userbundle

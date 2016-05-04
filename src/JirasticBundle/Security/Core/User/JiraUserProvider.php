@@ -1,5 +1,5 @@
 <?php
-namespace JiraBundle\Security;
+namespace JirasticBundle\Security\Core\User;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseFOSUBProvider;

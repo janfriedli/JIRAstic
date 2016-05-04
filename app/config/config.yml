@@ -61,7 +61,7 @@ swiftmailer:
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
+    firewall_name: secured_area
     user_class: JirasticBundle\Entity\User
 
 hwi_oauth:
@@ -85,5 +85,5 @@ hwi_oauth:
 
 services:
     my.custom.user_provider:
-        class:        MyBundle\Security\Core\User\MyFOSUBUserProvider
-        arguments: ['@fos_user.user_manager', { jira: jira_id }]
+        class:        JirasticBundle\Security\Core\User\JiraUserProvider
+        arguments: ['@fos_user.user_manager', { jira: jiraId }]

@@ -24,6 +24,9 @@ class User extends BaseUser
      */
     private $jiraId;
 
+    /**
+     * @ORM\Column(name="jiraAccessToken", type="string", length=255, nullable=true)
+     */
     private $jiraAccessToken;
 
     public function __construct()
