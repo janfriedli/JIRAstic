@@ -14,7 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  https://opensource.org/licenses/GPL-3.0 Public License
  * @link     http://www.swisscom.ch
  *
- * Class DefaultController
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ *
+ * Class User
  */
 class User extends BaseUser
 {

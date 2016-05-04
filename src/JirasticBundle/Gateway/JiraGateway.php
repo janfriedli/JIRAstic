@@ -27,7 +27,7 @@ class JiraGateway
     /**
      * @var string
      */
-    private $rawToken;
+    private $token;
 
     /**
      * @var string
@@ -61,7 +61,7 @@ class JiraGateway
         $consumerSecret
     ) {
         $this->guzzle = $guzzle;
-        $this->rawToken = $tokenStorage->getToken()->getRawToken();
+        $this->token = $tokenStorage;
         $this->privateKeyPath = $privateKeyPath;
         $this->consumerKey = $consumerKey;
         $this->consumerSecret = $consumerSecret;
@@ -100,14 +100,17 @@ class JiraGateway
      */
     public function prepareClientForOauth()
     {
-            $privateKey = $this->privateKeyPath;
-        
+        $privateKey = $this->privateKeyPath;
+        //If you're logged out getRawToken does not exist...
+        if(method_exists($this->token->getToken(), 'getRawToken')) {
+            $rawToken = $this->token->getToken()->getRawToken();
+
             $oauthPlugin = new OauthPlugin(
                 array(
                     'consumer_key'       => $this->consumerKey,
                     'consumer_secret'    => $this->consumerSecret,
-                    'token'              => $this->rawToken['oauth_token'],
-                    'token_secret'       => $this->rawToken['oauth_token_secret'],
+                    'token'              => $rawToken['oauth_token'],
+                    'token_secret'       => $rawToken['oauth_token_secret'],
                     'signature_method'   => 'RSA-SHA1',
                     'signature_callback' => function ($stringToSign, $key) use ($privateKey) {
                         if (!file_exists($privateKey)) {
@@ -129,7 +132,8 @@ class JiraGateway
             );
 
             $this->guzzle->addSubscriber($oauthPlugin);
+        }
 
-            return $this->guzzle;
+        return $this->guzzle;
     }
 }
