@@ -111,4 +111,23 @@ class ConfigUtils
         $params = $this->container->get('request')->attributes->get('_route_params');
         return intval($params['boardId']);
     }
+
+    /**
+     * @return null|object
+     */
+    public function getCustomfields()
+    {
+        //we alway just have one row!
+        $customfields = $this->entityManager->getRepository('JirasticBundle:Customfield')->findOneBy(array('id' => 1));
+        return $customfields;
+    }
+
+    public function customFieldsSet()
+    {
+        if($this->getCustomfields()) {
+            return true;
+        } 
+        
+        return false;
+    }
 }

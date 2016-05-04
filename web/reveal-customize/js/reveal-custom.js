@@ -11,7 +11,6 @@ Reveal.addEventListener( 'ready', function( event ) {
 } );
 
 function toggleDescriptionTestIsctruction() {
-    $('.descriptionDiv').hide();
     var showDescription = true;
 
     $('.toggleDescTest').click(function(){

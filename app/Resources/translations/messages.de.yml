@@ -25,6 +25,18 @@ Class: CSS Klasse
 Order id: Reihenfolge
 Status mapping: Statuszuordnung
 
+#Customfields
+Customfields: Custom Felder
+edit Customfields: Customfields anpassen
+Edit: anpassen
+Abort: abbrechen
+Test instructions: Test Instruktionen
+Story points: Story Punkte
+Story points estimated: Geschätzte Story Punkte
+Story owner: Story Besitzer
+Action: Aktion
+Customfields are not configured. Contact the administrator: Custom Felder wurden nicht konfiguriert. Kontaktieren Sie den Administrator.
+
 #Validation
 This value needs to be an integer: Dieser Wert muss eine Zahl sein
 This value needs to be a string: Dieser Wer muss eine Zeichenkette sein.
