@@ -40,7 +40,7 @@ class IssueRepository implements IssueRepositoryInterface
      * @var ConfigUtils
      */
     private $configUtils;
-    
+
     /**
      * IssueRepository constructor
      * @param JiraGateway    $jiraGateway    Gateway
@@ -51,10 +51,12 @@ class IssueRepository implements IssueRepositoryInterface
         JiraGateway $jiraGateway,
         IssuePrototype $issuePrototype,
         ConfigUtils $configUtils
+
     ) {
         $this->jiraGateway = $jiraGateway;
         $this->issuePrototype = $issuePrototype;
         $this->configUtils = $configUtils;
+
     }
 
     /**
@@ -107,28 +109,35 @@ class IssueRepository implements IssueRepositoryInterface
             $issueObj->setSummary($issue->fields->summary);
             $issueObj->setCreatorName($issue->fields->creator->displayName);
             $issueObj->setDescription($issue->renderedFields->description);
-            
-            if (property_exists($issue->renderedFields, 'customfield_'.$this->testInstructionFieldId)) {
-                $issueObj->setTestInstruction(
-                    $issue->renderedFields->{'customfield_'.$this->testInstructionFieldId}
-                );
-            }
-            
-            $ownerName = 'customfield_'.$this->ownerFieldId;
-            if (property_exists($issue->fields, $ownerName) && isset($issue->fields->{$ownerName})) {
-                $issueObj->setOwnerName($issue->fields->{'customfield_'.$this->ownerFieldId}->displayName);
-            }
 
-            if (isset($issue->fields->assignee->displayName)) {
-                $issueObj->setAssigneeName($issue->fields->assignee->displayName);
-            }
-            
-            if (property_exists($issue->fields, 'customfield_'.$this->storyPointsFieldId)) {
-                $issueObj->setStoryPoints($issue->fields->{'customfield_'.$this->storyPointsFieldId});
-            }
+            $customfields = $this->configUtils->getCustomfields();
+            if($customfields) {
 
-            if (property_exists($issue->fields, 'customfield_'.$this->storyPointsEstimateFieldId)) {
-                $issueObj->setStoryPointsEstimate($issue->fields->{'customfield_'.$this->storyPointsEstimateFieldId});
+                $testInstructions = $customfields->getTestinstructions();
+                if (property_exists($issue->renderedFields, $testInstructions)) {
+                    $issueObj->setTestInstruction(
+                        $issue->renderedFields->{$testInstructions}
+                    );
+                }
+
+                $ownerName = $customfields->getStoryOwner();
+                if (property_exists($issue->fields, $ownerName) && isset($issue->fields->{$ownerName})) {
+                    $issueObj->setOwnerName($issue->fields->{$ownerName}->displayName);
+                }
+
+                if (isset($issue->fields->assignee->displayName)) {
+                    $issueObj->setAssigneeName($issue->fields->assignee->displayName);
+                }
+
+                $storyPoints = $customfields->getStoryPoints();
+                if (property_exists($issue->fields, $storyPoints)) {
+                    $issueObj->setStoryPoints($issue->fields->{$storyPoints});
+                }
+
+                $storyPointsEstimated = $customfields->getStoryPointsEstimated();
+                if (property_exists($issue->fields, $storyPointsEstimated)) {
+                    $issueObj->setStoryPointsEstimate($issue->fields->{$storyPointsEstimated});
+                }
             }
 
             $mappedIssues[$statusMapping[$statusId]]['issues'][] = $issueObj;

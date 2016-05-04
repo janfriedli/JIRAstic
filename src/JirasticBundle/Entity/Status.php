@@ -61,7 +61,7 @@ class Status
      * @ORM\Column(name="bg_color", type="string", length=255,  nullable=false)
      * @Assert\NotBlank()
      * Hex Code Regex taken from Regexer.com Community matches: #xxxxxx
-     * @Assert\Regex("/#{1}([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})/")
+     * @Assert\Regex("/([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})/")
      */
     private $bgcolor;
 

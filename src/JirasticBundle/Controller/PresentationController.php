@@ -4,12 +4,14 @@
  */
 namespace JirasticBundle\Controller;
 
+use JirasticBundle\Util\ConfigUtils;
 use Symfony\Component\HttpFoundation\Request;
 use JirasticBundle\Service\JiraAPI;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\FormFactory;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Router;
 
 /**
@@ -38,7 +40,7 @@ class PresentationController
     private $router;
 
     /**
-     * @var form Factory
+     * @var FormFactory
      */
     private $formFactory;
 
@@ -46,6 +48,16 @@ class PresentationController
      * @var EntityManager
      */
     private $entityManager;
+
+    /**
+     * @var ConfigUtils
+     */
+    private $configUtils;
+
+    /**
+     * @var Session
+     */
+    private $session;
 
 
     /**
@@ -57,19 +69,25 @@ class PresentationController
      * @param JiraAPI         $jiraApi       JiraApi
      * @param FormFactory     $formFactory   Form Factory
      * @param EntityManager   $entityManager Entity Manager
+     * @param ConfigUtils     $configUtils   Config Utils
+     * @param Session         $session       Session
      */
     public function __construct(
         EngineInterface $templating,
         Router $router,
         JiraAPI $jiraApi,
         FormFactory $formFactory,
-        EntityManager $entityManager
+        EntityManager $entityManager,
+        ConfigUtils $configUtils,
+        Session $session
     ) {
         $this->templating = $templating;
         $this->router = $router;
         $this->jiraApi = $jiraApi;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
+        $this->configUtils = $configUtils;
+        $this->session = $session;
     }
 
     /**
@@ -91,6 +109,14 @@ class PresentationController
      */
     public function boardsAction(Request $request)
     {
+        if(!$this->configUtils->customFieldsSet()){
+            $this->session->getFlashBag()
+                ->add(
+                'warning',
+                'Customfields are not configured. Contact the administrator'
+            );
+        }
+
         return $this->templating->renderResponse(
             'JirasticBundle:presentation:boards.html.twig',
             array(

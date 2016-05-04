@@ -165,14 +165,16 @@
                                     {% endif %}
                                     <small>{% trans %}assigned to{% endtrans %}</small> {{issue.getAssigneeName()}}
                                 </p>
-                                <div class="toggleDescTest"><i class="fa fa-eye"></i> {% trans %}show summary{% endtrans %}</div>
+                            {%  if issue.getTestInstruction() %}<div class="toggleDescTest"><i class="fa fa-eye"></i> {% trans %}show summary{% endtrans %}</div>{% endif %}
                                 <div class="stretch testInstruction">
                                     <div class="stretchInner">
+                                        {%  if issue.getTestInstruction() %}
                                         <div class="testInstructionDiv">
                                             <h2>{% trans %}Test Instructions{% endtrans %}</h2>
                                             {{issue.getTestInstruction()|raw}}
                                         </div>
-                                        <div class="descriptionDiv">
+                                        {% endif %}
+                                        <div class="descriptionDiv" {%  if issue.getTestInstruction() %}style="display: none"{% endif %}>
                                             <h2>{% trans %}Summary{% endtrans %}</h2>
                                             {{issue.getDescription()|raw}}
                                         </div>
@@ -185,7 +187,7 @@
                 </section>
             {% endfor %}
 
-            <section>
+            <section id ="jirastic-spinner">
                 <h1>{{sprint.getTitle()}}</h1>
                 <h3>{% trans %}overview{% endtrans %}</h3>
                 <p>

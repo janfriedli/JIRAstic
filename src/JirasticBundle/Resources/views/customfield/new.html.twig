@@ -1,0 +1,11 @@
+{% extends "securityBase.html.twig" %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block content %}
+    <h1>Map customfields</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-success" value="Create" />
+    {{ form_end(form) }}
+{% endblock %}

@@ -23,6 +23,11 @@
             <argument>%jirastic_classes%</argument>
         </service>
 
+        <service id="jirastic.form.type.customfield" class="JirasticBundle\Form\CustomfieldType">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument>%jirastic_api_customfields_endpoint%</argument>
+        </service>
+
         <service id="jirastic.form.type.board" class="JirasticBundle\Form\BoardType">
             <argument type="service" id="jirastic.form.type.status" />
         </service>
@@ -45,6 +50,8 @@
             <argument type="service" id="jirastic.jira_api"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="jirastic.util.config"/>
+            <argument type="service" id="session"/>
         </service>
 
         <service id="jirastic.jira_api" class="JirasticBundle\Service\JiraAPI">
@@ -80,12 +87,15 @@
             <argument type="service" id="jirastic.prototype.issue"/>
             <argument type="service" id="jirastic.util.config"/>
             <argument type="service" id="service_container"/>
+<<<<<<< HEAD
         </service>
 
         <service id="jirastic.utils.board_loader" class="JirasticBundle\Util\BoardLoaderUtils">
             <argument type="service" id="jirastic.gateway.jira"/>
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%kernel.root_dir%</argument>
+=======
+>>>>>>> a787d65150ca08057079215c1de7498b98691f1d
         </service>
 
     </services>

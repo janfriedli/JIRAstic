@@ -50,7 +50,7 @@ class StatusType extends AbstractType
     {
         $builder->add('title')
                 ->add('titleShort')
-                ->add('bgcolor')
+                ->add('bgcolor', null, array( 'attr'=> array( 'class'=>'jscolor')))
                 ->add(
                     'icon',
                     ChoiceType::class,

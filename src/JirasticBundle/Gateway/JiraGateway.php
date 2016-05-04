@@ -102,7 +102,7 @@ class JiraGateway
     {
         $privateKey = $this->privateKeyPath;
         //If you're logged out getRawToken does not exist...
-        if(method_exists($this->token->getToken(), 'getRawToken')) {
+        if (method_exists($this->token->getToken(), 'getRawToken')) {
             $rawToken = $this->token->getToken()->getRawToken();
 
             $oauthPlugin = new OauthPlugin(

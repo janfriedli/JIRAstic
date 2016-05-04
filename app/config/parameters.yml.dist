@@ -36,3 +36,6 @@ parameters:
         fa-exclamation-triangle: fa-exclamation-triangle
 
     jirastic_show_sprints_x_months_back: 6
+
+    # customfields
+    jirastic_api_customfields_endpoint: /rest/api/2/field

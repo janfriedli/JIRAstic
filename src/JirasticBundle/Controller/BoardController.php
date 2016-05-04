@@ -41,7 +41,7 @@ class BoardController extends Controller
         return $this->render(
             'JirasticBundle:board:index.html.twig',
             array(
-                'boards' => $boards,
+                'boards' => $boards
             )
         );
     }
@@ -74,7 +74,13 @@ class BoardController extends Controller
             $em->persist($board);
             $em->flush();
 
-            return $this->redirectToRoute('admin_board_index');
+            // display saved flash message
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
+
+            return $this->redirectToRoute('admin_board_index', ['saved' => true]);
         }
 
         return $this->render(

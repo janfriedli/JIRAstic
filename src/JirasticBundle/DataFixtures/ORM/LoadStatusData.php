@@ -112,7 +112,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
             array(
                 'title' =>'closed stories',
                 'titleShort' => 'closed',
-                'bgcolor' => '#1e7145',
+                'bgcolor' => '1e7145',
                 'class' => 'resolved',
                 'icon' => 'fa-check-circle-o',
                 'order' => 0
@@ -120,7 +120,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
             array(
                 'title' =>'resolved stories',
                 'titleShort' => 'resolved',
-                'bgcolor' => '#1e7145',
+                'bgcolor' => '1e7145',
                 'class' => 'resolved',
                 'icon' => 'fa-check-circle-o',
                 'order' => 10
@@ -128,7 +128,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
             array(
                 'title' =>'stories in progress',
                 'titleShort' => 'in progress',
-                'bgcolor' => '#2b5797',
+                'bgcolor' => '2b5797',
                 'class' => 'inprogress',
                 'icon' => 'fa-cog',
                 'order' => 20
@@ -136,7 +136,7 @@ class LoadStatusData extends AbstractFixture implements OrderedFixtureInterface
             array(
                 'title' =>'unresolved stories',
                 'titleShort' => 'open',
-                'bgcolor' => '#b91d47',
+                'bgcolor' => 'b91d47',
                 'class' => 'unresolved',
                 'icon' => 'fa-exclamation-triangle',
                 'order' => 30
