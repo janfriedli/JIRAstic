@@ -109,12 +109,10 @@ class PresentationController
      */
     public function boardsAction(Request $request)
     {
-        if(!$this->configUtils->customFieldsSet()){
-            $this->session->getFlashBag()
-                ->add(
-                'warning',
-                'Customfields are not configured. Contact the administrator'
-            );
+        if (!$this->configUtils->customFieldsSet()) {
+            $this->session
+                ->getFlashBag()
+                ->add('warning', 'Customfields are not configured. Contact the administrator');
         }
 
         return $this->templating->renderResponse(

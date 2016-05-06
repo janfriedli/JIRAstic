@@ -90,7 +90,7 @@ class Customfield
     /**
      * Set testInstructions
      *
-     * @param string $testInstructions
+     * @param string $testInstructions The TestIsntructions
      * @return Customfield
      */
     public function setTestInstructions($testInstructions)
@@ -113,7 +113,7 @@ class Customfield
     /**
      * Set storyPoints
      *
-     * @param string $storyPoints
+     * @param string $storyPoints Storypoints
      * @return Customfield
      */
     public function setStoryPoints($storyPoints)
@@ -136,7 +136,7 @@ class Customfield
     /**
      * Set storyPointsEstimated
      *
-     * @param string $storyPointsEstimated
+     * @param string $storyPointsEstimated StoryPointsEstimated
      * @return Customfield
      */
     public function setStoryPointsEstimated($storyPointsEstimated)
@@ -159,7 +159,7 @@ class Customfield
     /**
      * Set storyOwner
      *
-     * @param string $storyOwner
+     * @param string $storyOwner StoryOwner
      * @return Customfield
      */
     public function setStoryOwner($storyOwner)
