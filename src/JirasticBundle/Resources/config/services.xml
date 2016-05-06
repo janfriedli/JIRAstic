@@ -94,6 +94,7 @@
             <argument type="service" id="jirastic.gateway.jira"/>
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%kernel.root_dir%</argument>
+            <argument type="service" id="security.token_storage"/>
         </service>
 
     </services>
