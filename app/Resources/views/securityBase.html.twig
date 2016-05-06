@@ -48,9 +48,6 @@
                 <span class="icon-bar"></span>
             </button>
             {% if is_granted('ROLE_USER') %}
-                <a class="navbar-brand" href="{{ path('admin_board_index') }}"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
-                <a class="navbar-brand" href="{{ path('admin_customfield_index') }}"><i class="fa fa-cog"></i> {% trans %}Customfields{% endtrans %}</a>
-            {% else %}
                 <a class="navbar-brand" href="{{ path('boards') }}"><i class="fa fa-home"></i> JIRAstic</a>
             {% endif %}
         </div>
@@ -61,13 +58,19 @@
                     <a href="#page-top"></a>
                 </li>
                 {% if is_granted('ROLE_USER') %}
+                    <li class="page-scroll {% if app.request.get('_route') == 'admin_board_index' %}active{% endif %}">
+                        <a href="{{ path('admin_board_index') }}"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
+                    </li>
+                    <li class="page-scroll {% if app.request.get('_route') == 'admin_customfield_index' %}active{% endif %}">
+                        <a href="{{ path('admin_customfield_index') }}"><i class="fa fa-cog"></i> {% trans %}Customfields{% endtrans %}</a>
+                    </li>
                     <li class="page-scroll {% if app.request.get('_route') == 'boards' %}active{% endif %}">
                         <a href="{{ path('boards') }}"><i class="fa fa-television"></i> {% trans %}Presentation{% endtrans %}</a>
                     </li>
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">{{ app.user.username }} <i class="fa fa-sign-out"></i></a>
+                    </li>
                 {% endif %}
-                <li>
-                    <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i></a>
-                </li>
             </ul>
         </div>
     </div>
