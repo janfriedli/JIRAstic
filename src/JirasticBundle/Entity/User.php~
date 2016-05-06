@@ -7,6 +7,7 @@ namespace JirasticBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @package JirasticBundle\Entity
@@ -39,9 +40,14 @@ class User extends BaseUser
     private $jiraAccessToken;
 
     /**
-     * @ORM\OneToMany(targetEntity="Board", mappedBy="board")
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="user")
      */
     private $boards;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Customfield", mappedBy="user")
+     */
+    private $customfields;
 
     /**
      * User constructor.
@@ -51,6 +57,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->boards = new ArrayCollection();
+        $this->customfields = new ArrayCollection();
     }
 
     /**
@@ -89,5 +96,39 @@ class User extends BaseUser
     public function getJiraAccessToken()
     {
         return $this->jiraAccessToken;
+    }
+
+    /**
+     * Add boards
+     *
+     * @param \JirasticBundle\Entity\Board $boards Boards
+     * @return User
+     */
+    public function addBoard(\JirasticBundle\Entity\Board $boards)
+    {
+        $this->boards[] = $boards;
+
+        return $this;
+    }
+
+    /**
+     * Remove boards
+     *
+     * @param \JirasticBundle\Entity\Board $boards Boards
+     * @return void
+     */
+    public function removeBoard(\JirasticBundle\Entity\Board $boards)
+    {
+        $this->boards->removeElement($boards);
+    }
+
+    /**
+     * Get boards
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBoards()
+    {
+        return $this->boards;
     }
 }

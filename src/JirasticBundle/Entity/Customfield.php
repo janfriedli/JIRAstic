@@ -76,6 +76,12 @@ class Customfield
      */
     private $storyOwner;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="customfields")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -177,5 +183,28 @@ class Customfield
     public function getStoryOwner()
     {
         return $this->storyOwner;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \JirasticBundle\Entity\User $user User
+     * @return Customfield
+     */
+    public function setUser(\JirasticBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \JirasticBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -6,6 +6,7 @@ namespace JirasticBundle\Util;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @package JirasticBundle\Util
@@ -28,14 +29,21 @@ class ConfigUtils
     private $container;
 
     /**
-     * ConfigUtils constructor.
-     * @param EntityManager $entityManager Entity Manager
-     * @param Container     $container     Container
+     * @var string
      */
-    public function __construct(EntityManager $entityManager, Container $container)
+    private $token;
+
+    /**
+     * ConfigUtils constructor.
+     * @param EntityManager         $entityManager Entity Manager
+     * @param Container             $container     Container
+     * @param TokenStorageInterface $tokenStorage  Token storage
+     */
+    public function __construct(EntityManager $entityManager, Container $container, TokenStorageInterface $tokenStorage)
     {
         $this->entityManager = $entityManager;
         $this->container = $container;
+        $this->token = $tokenStorage;
     }
 
     /**
@@ -117,8 +125,9 @@ class ConfigUtils
      */
     public function getCustomfields()
     {
-        //we alway just have one row!
-        $customfields = $this->entityManager->getRepository('JirasticBundle:Customfield')->findOneBy(array('id' => 1));
+        $customfields = $this->entityManager
+            ->getRepository('JirasticBundle:Customfield')
+            ->findOneByUser($this->token->getToken()->getUser());
         return $customfields;
     }
 

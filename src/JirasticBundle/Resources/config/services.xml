@@ -16,6 +16,7 @@
         <service id="jirastic.util.config" class="JirasticBundle\Util\ConfigUtils">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="service_container" />
+            <argument type="service" id="security.token_storage"/>
         </service>
 
         <service id="jirastic.form.type.status" class="JirasticBundle\Form\StatusType">
@@ -93,7 +94,6 @@
             <argument type="service" id="jirastic.gateway.jira"/>
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%kernel.root_dir%</argument>
-            <argument type="service" id="security.token_storage"/>
         </service>
 
     </services>

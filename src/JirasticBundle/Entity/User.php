@@ -45,6 +45,11 @@ class User extends BaseUser
     private $boards;
 
     /**
+     * @ORM\OneToMany(targetEntity="Customfield", mappedBy="user")
+     */
+    private $customfields;
+
+    /**
      * User constructor.
      * @return void
      */
@@ -52,6 +57,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->boards = new ArrayCollection();
+        $this->customfields = new ArrayCollection();
     }
 
     /**
@@ -124,5 +130,39 @@ class User extends BaseUser
     public function getBoards()
     {
         return $this->boards;
+    }
+
+    /**
+     * Add customfields
+     *
+     * @param \JirasticBundle\Entity\Customfield $customfields Customfields
+     * @return User
+     */
+    public function addCustomfield(\JirasticBundle\Entity\Customfield $customfields)
+    {
+        $this->customfields[] = $customfields;
+
+        return $this;
+    }
+
+    /**
+     * Remove customfields
+     *
+     * @param \JirasticBundle\Entity\Customfield $customfields Customfields
+     * @return void
+     */
+    public function removeCustomfield(\JirasticBundle\Entity\Customfield $customfields)
+    {
+        $this->customfields->removeElement($customfields);
+    }
+
+    /**
+     * Get customfields
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCustomfields()
+    {
+        return $this->customfields;
     }
 }

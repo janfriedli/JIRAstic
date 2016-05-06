@@ -53,7 +53,7 @@ class BoardController extends Controller
      *
      * @Route("/{id}/edit", name="admin_board_edit")
      * @Method({"GET", "POST"})
-     *
+     * @throws UnauthorizedHttpException
      * @param Request $request Request
      * @param Board   $board   Board
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response

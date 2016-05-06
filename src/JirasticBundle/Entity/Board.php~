@@ -66,7 +66,7 @@ class Board
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="boards")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -152,5 +152,28 @@ class Board
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \JirasticBundle\Entity\User $user User
+     * @return Board
+     */
+    public function setUser(\JirasticBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \JirasticBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

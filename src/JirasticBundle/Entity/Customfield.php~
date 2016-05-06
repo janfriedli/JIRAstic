@@ -76,6 +76,12 @@ class Customfield
      */
     private $storyOwner;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="customfields")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
 
     /**
      * Get id
