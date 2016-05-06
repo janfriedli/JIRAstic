@@ -45,9 +45,9 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/admin, roles: ROLE_OAUTH_USER }
+        - { path: ^/admin, roles: ROLE_USER }
         - { path: ^/board, roles: ROLE_USER }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_USER }

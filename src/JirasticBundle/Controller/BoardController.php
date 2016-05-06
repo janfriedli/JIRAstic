@@ -80,7 +80,7 @@ class BoardController extends Controller
                 'Your changes were saved!'
             );
 
-            return $this->redirectToRoute('admin_board_index', ['saved' => true]);
+            return $this->redirectToRoute('admin_board_index');
         }
 
         return $this->render(
