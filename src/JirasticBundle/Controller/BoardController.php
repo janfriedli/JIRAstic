@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JirasticBundle\Entity\Board;
 use JirasticBundle\Util\BoardLoaderUtils;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 /**
  * @package JirasticBundle\Controller
@@ -36,7 +37,8 @@ class BoardController extends Controller
         $this->get('jirastic.utils.board_loader')->load();
 
         $em = $this->getDoctrine()->getManager();
-        $boards = $em->getRepository('JirasticBundle:Board')->findAll();
+        // just show the boards this user is allowed to edit
+        $boards = $em->getRepository('JirasticBundle:Board')->findByUser($this->getUser());
 
         return $this->render(
             'JirasticBundle:board:index.html.twig',
@@ -58,6 +60,10 @@ class BoardController extends Controller
      */
     public function editAction(Request $request, Board $board)
     {
+        if ($board->getUser()->getId() !== $this->getUser()->getId()) {
+            throw new UnauthorizedHttpException('You cannot modify other users settings');
+        }
+
         //make sure jira states are available
         $this->get('doctrine.orm.entity_manager')
             ->getRepository('JirasticBundle:StatusMapping')

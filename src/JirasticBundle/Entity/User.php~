@@ -7,7 +7,6 @@ namespace JirasticBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @package JirasticBundle\Entity
@@ -40,7 +39,7 @@ class User extends BaseUser
     private $jiraAccessToken;
 
     /**
-     * @ORM\OneToMany(targetEntity="Board", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="board")
      */
     private $boards;
 
@@ -90,39 +89,5 @@ class User extends BaseUser
     public function getJiraAccessToken()
     {
         return $this->jiraAccessToken;
-    }
-
-    /**
-     * Add boards
-     *
-     * @param \JirasticBundle\Entity\Board $boards Boards
-     * @return User
-     */
-    public function addBoard(\JirasticBundle\Entity\Board $boards)
-    {
-        $this->boards[] = $boards;
-
-        return $this;
-    }
-
-    /**
-     * Remove boards
-     *
-     * @param \JirasticBundle\Entity\Board $boards Boards
-     * @return void
-     */
-    public function removeBoard(\JirasticBundle\Entity\Board $boards)
-    {
-        $this->boards->removeElement($boards);
-    }
-
-    /**
-     * Get boards
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getBoards()
-    {
-        return $this->boards;
     }
 }
