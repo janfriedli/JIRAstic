@@ -122,11 +122,14 @@ class ConfigUtils
         return $customfields;
     }
 
+    /**
+     * @return bool
+     */
     public function customFieldsSet()
     {
-        if($this->getCustomfields()) {
+        if ($this->getCustomfields()) {
             return true;
-        } 
+        }
         
         return false;
     }

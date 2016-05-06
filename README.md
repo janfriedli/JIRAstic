@@ -1,5 +1,7 @@
 # JIRAstic
-IPA Project
+JIRAstic automatically creates a sprint resumée with RevealJS.
+
+This software was created during my IPA.
 
 ## Installation
 
@@ -23,8 +25,9 @@ This will start a development server
 2. Follow the steps in this tutorial to enable OAuth for JIRAstic: https://www.prodpad.com/2013/05/tech-tutorial-oauth-in-jira/
 
 3. Add the missing params to ``app/config/paramters.yml``
-    * jira.client_id -> Consumer Key
-    * jira.client_secret -> absolute path to your private key file.
+    * jira.consumer_key -> Consumer Key
+    * jira.consumer_secret -> The consumer secret
+    * jira.private_key_path -> Absolute path to your private key file
     * jirastic_api_url -> the URL to your JIRA instance. NO trailing slash at the end.
 
 ### Database

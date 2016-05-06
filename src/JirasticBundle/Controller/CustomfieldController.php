@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Customfield Controller
+ */
 namespace JirasticBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +12,11 @@ use JirasticBundle\Entity\Customfield;
 use JirasticBundle\Form\CustomfieldType;
 
 /**
+ * @package JirasticBundle\Controller
+ * @author   Jan Friedli <jan.friedli@swisscom.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 Public License
+ * @link     http://www.swisscom.ch
+ *
  * Customfield controller.
  *
  * @Route("/admin/customfield")
@@ -21,6 +28,7 @@ class CustomfieldController extends Controller
      *
      * @Route("/", name="admin_customfield_index")
      * @Method("GET")
+     * @return Response
      */
     public function indexAction()
     {
@@ -32,9 +40,12 @@ class CustomfieldController extends Controller
             return $this->redirectToRoute('admin_customfield_new');
         }
 
-        return $this->render('JirasticBundle:customfield:index.html.twig', array(
+        return $this->render(
+            'JirasticBundle:customfield:index.html.twig',
+            array(
             'customfields' => $customfields,
-        ));
+            )
+        );
     }
 
     /**
@@ -42,6 +53,9 @@ class CustomfieldController extends Controller
      *
      * @Route("/new", name="admin_customfield_new")
      * @Method({"GET", "POST"})
+     *
+     * @param  Request $request The Request
+     * @return  Response
      */
     public function newAction(Request $request)
     {
@@ -62,10 +76,13 @@ class CustomfieldController extends Controller
             return $this->redirectToRoute('admin_customfield_index', array('id' => $customfield->getId()));
         }
 
-        return $this->render('JirasticBundle:customfield:new.html.twig', array(
-            'customfield' => $customfield,
-            'form' => $form->createView(),
-        ));
+        return $this->render(
+            'JirasticBundle:customfield:new.html.twig',
+            array(
+                'customfield' => $customfield,
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
@@ -73,6 +90,10 @@ class CustomfieldController extends Controller
      *
      * @Route("/{id}/edit", name="admin_customfield_edit")
      * @Method({"GET", "POST"})
+     *
+     * @param Request     $request     Request
+     * @param Customfield $customfield Customfield
+     * @return Response
      */
     public function editAction(Request $request, Customfield $customfield)
     {
@@ -92,9 +113,12 @@ class CustomfieldController extends Controller
             return $this->redirectToRoute('admin_customfield_index', array('id' => $customfield->getId()));
         }
 
-        return $this->render('JirasticBundle:customfield:edit.html.twig', array(
-            'customfield' => $customfield,
-            'edit_form' => $editForm->createView(),
-        ));
+        return $this->render(
+            'JirasticBundle:customfield:edit.html.twig',
+            array(
+                'customfield' => $customfield,
+                'edit_form' => $editForm->createView(),
+            )
+        );
     }
 }

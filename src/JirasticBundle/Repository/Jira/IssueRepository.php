@@ -51,7 +51,6 @@ class IssueRepository implements IssueRepositoryInterface
         JiraGateway $jiraGateway,
         IssuePrototype $issuePrototype,
         ConfigUtils $configUtils
-
     ) {
         $this->jiraGateway = $jiraGateway;
         $this->issuePrototype = $issuePrototype;
@@ -111,7 +110,7 @@ class IssueRepository implements IssueRepositoryInterface
             $issueObj->setDescription($issue->renderedFields->description);
 
             $customfields = $this->configUtils->getCustomfields();
-            if($customfields) {
+            if ($customfields) {
 
                 $testInstructions = $customfields->getTestinstructions();
                 if (property_exists($issue->renderedFields, $testInstructions)) {
