@@ -83,6 +83,7 @@ class BoardLoaderUtils
                 $board->setName($jiraBoard->name);
                 $board->setJiraId($jiraBoard->id);
                 $board->setUser($this->token->getToken()->getUser());
+                $board->setLastModified(new \DateTime());
                 $this->entityManager->persist($board);
             }
         }

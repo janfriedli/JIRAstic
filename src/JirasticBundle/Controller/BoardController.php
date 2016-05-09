@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JirasticBundle\Entity\Board;
 use JirasticBundle\Util\BoardLoaderUtils;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @package JirasticBundle\Controller
@@ -38,7 +39,8 @@ class BoardController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         // just show the boards this user is allowed to edit
-        $boards = $em->getRepository('JirasticBundle:Board')->findByUser($this->getUser());
+        $boards = $em->getRepository('JirasticBundle:Board')
+            ->findByUser($this->getUser(), array('lastModified' => 'DESC'));
 
         return $this->render(
             'JirasticBundle:board:index.html.twig',
@@ -77,6 +79,7 @@ class BoardController extends Controller
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $board->setLastModified(new \DateTime());
             $em->persist($board);
             $em->flush();
 
