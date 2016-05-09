@@ -184,27 +184,4 @@ class Customfield
     {
         return $this->storyOwner;
     }
-
-    /**
-     * Set user
-     *
-     * @param \JirasticBundle\Entity\User $user User
-     * @return Customfield
-     */
-    public function setUser(\JirasticBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \JirasticBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }

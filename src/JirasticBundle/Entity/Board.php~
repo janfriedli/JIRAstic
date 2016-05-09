@@ -71,36 +71,11 @@ class Board
     private $user;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="last_modified", type="datetime", nullable=true, unique=false)
-     * @Assert\NotBlank()
-     */
-    private $lastModified;
-
-    /**
      * Board constructor.
      */
     public function __construct()
     {
         $this->statuses = new ArrayCollection();
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getLastModified()
-    {
-        return $this->lastModified;
-    }
-
-    /**
-     * @param \DateTime $lastModified last modified timestamp
-     * @return void
-     */
-    public function setLastModified($lastModified)
-    {
-        $this->lastModified = $lastModified;
     }
 
     /**

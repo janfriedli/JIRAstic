@@ -10,6 +10,7 @@ use JirasticBundle\Gateway\JiraGateway;
 use MyProject\Proxies\__CG__\stdClass;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @package JirasticBundle\Util
@@ -43,16 +44,27 @@ class BoardLoaderUtils
     private $rootDir;
 
     /**
-     * LoadBoardData constructor.
-     * @param JiraGateway   $jiraGateway   JiraGateway
-     * @param ObjectManager $entityManager The entity manager
-     * @param string        $rootDir       Application root path
+     * @var string
      */
-    public function __construct(JiraGateway $jiraGateway, ObjectManager $entityManager, $rootDir)
-    {
+    private $token;
+
+    /**
+     * LoadBoardData constructor.
+     * @param JiraGateway           $jiraGateway   JiraGateway
+     * @param ObjectManager         $entityManager The entity manager
+     * @param string                $rootDir       Application root path
+     * @param TokenStorageInterface $tokenStorage  Token storage
+     */
+    public function __construct(
+        JiraGateway $jiraGateway,
+        ObjectManager $entityManager,
+        $rootDir,
+        TokenStorageInterface $tokenStorage
+    ) {
         $this->jiraGateway = $jiraGateway;
         $this->entityManager = $entityManager;
         $this->rootDir = $rootDir;
+        $this->token = $tokenStorage;
     }
 
     /**
@@ -70,6 +82,8 @@ class BoardLoaderUtils
                 $board = new Board();
                 $board->setName($jiraBoard->name);
                 $board->setJiraId($jiraBoard->id);
+                $board->setUser($this->token->getToken()->getUser());
+                $board->setLastModified(new \DateTime());
                 $this->entityManager->persist($board);
             }
         }

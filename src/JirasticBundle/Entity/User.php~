@@ -131,38 +131,4 @@ class User extends BaseUser
     {
         return $this->boards;
     }
-
-    /**
-     * Add customfields
-     *
-     * @param \JirasticBundle\Entity\Customfield $customfields Customfields
-     * @return User
-     */
-    public function addCustomfield(\JirasticBundle\Entity\Customfield $customfields)
-    {
-        $this->customfields[] = $customfields;
-
-        return $this;
-    }
-
-    /**
-     * Remove customfields
-     *
-     * @param \JirasticBundle\Entity\Customfield $customfields Customfields
-     * @return void
-     */
-    public function removeCustomfield(\JirasticBundle\Entity\Customfield $customfields)
-    {
-        $this->customfields->removeElement($customfields);
-    }
-
-    /**
-     * Get customfields
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCustomfields()
-    {
-        return $this->customfields;
-    }
 }
