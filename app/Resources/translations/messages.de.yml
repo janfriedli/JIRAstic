@@ -1,5 +1,5 @@
 #Login
-JIRAstic Config: Jirastic Konfiguration
+States: Stati
 Presentation: Präsentation
 Login with JIRA: Mit JIRA anmelden
 Login: einloggen
@@ -27,6 +27,7 @@ Class: CSS Klasse
 Order id: Reihenfolge
 Status mapping: Statuszuordnung
 Your changes were saved!: Änderungen wurden gespeichert
+Configuration: Konfiguration
 
 #Customfields
 Customfields: Custom Felder

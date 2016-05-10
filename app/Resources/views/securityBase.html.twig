@@ -58,11 +58,16 @@
                     <a href="#page-top"></a>
                 </li>
                 {% if is_granted('ROLE_USER') %}
-                    <li class="page-scroll {% if app.request.get('_route') == 'admin_board_index' %}active{% endif %}">
-                        <a href="{{ path('admin_board_index') }}"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
-                    </li>
-                    <li class="page-scroll {% if app.request.get('_route') == 'admin_customfield_index' %}active{% endif %}">
-                        <a href="{{ path('admin_customfield_index') }}"><i class="fa fa-cog"></i> {% trans %}Customfields{% endtrans %}</a>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cog"></i> {% trans %}Configuration{% endtrans %} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="page-scroll">
+                                <a href="{{ path('admin_board_index') }}"> {% trans %}States{% endtrans %}</a>
+                            </li>
+                            <li class="page-scroll">
+                                <a href="{{ path('admin_customfield_index') }}">{% trans %}Customfields{% endtrans %}</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="page-scroll {% if app.request.get('_route') == 'boards' %}active{% endif %}">
                         <a href="{{ path('boards') }}"><i class="fa fa-television"></i> {% trans %}Presentation{% endtrans %}</a>
