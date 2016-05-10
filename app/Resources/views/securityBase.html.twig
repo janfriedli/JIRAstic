@@ -61,10 +61,10 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cog"></i> {% trans %}Configuration{% endtrans %} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="page-scroll">
+                            <li>
                                 <a href="{{ path('admin_board_index') }}"> {% trans %}States{% endtrans %}</a>
                             </li>
-                            <li class="page-scroll">
+                            <li>
                                 <a href="{{ path('admin_customfield_index') }}">{% trans %}Customfields{% endtrans %}</a>
                             </li>
                         </ul>
@@ -100,6 +100,11 @@
 {% block footer %}
 {% endblock %}
 </div>
+<footer class="footer">
+    <div class="container-footer">
+        <p class="text-muted">{% trans %}JIRAstic was developed by{% endtrans %} <a href="https://github.com/janfriedli">Jan Friedli</a> {% trans %}and invented by{% endtrans %} <a href="https://github.com/paza">Patrick Zahnd</a></p>
+    </div>
+</footer>
 </body>
 </html>
 
