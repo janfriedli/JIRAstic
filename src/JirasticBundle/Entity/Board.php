@@ -162,6 +162,17 @@ class Board
     {
         $this->statuses->removeElement($status);
     }
+    
+    
+    /**
+     * @return void
+     */
+    public function removeStatuses()
+    {
+        foreach ($this->getStatuses() as $status) {
+            $this->statuses->removeElement($status);
+        }
+    }
 
     /**
      * @return \Doctrine\Common\Collections\Collection

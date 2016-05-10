@@ -96,6 +96,8 @@ class BoardLoaderUtils
             if (!$process->isSuccessful()) {
                 throw new ProcessFailedException($process);
             }
+        } else {
+            $this->removeDeletedBoards($response->values);
         }
 
     }
@@ -108,7 +110,10 @@ class BoardLoaderUtils
      */
     private function checkIfExistInDb($board)
     {
-        $flag = $this->entityManager->getRepository('JirasticBundle:Board')->findOneBy(array('jiraId' => $board->id));
+        $flag = $this->entityManager
+            ->getRepository('JirasticBundle:Board')
+            ->findOneBy(array('jiraId' => $board->id, 'user' => $this->token->getToken()->getUser()));
+
         if ($flag) {
             return true;
         }
@@ -121,7 +126,9 @@ class BoardLoaderUtils
      */
     private function checkIfDbIsEmtpy()
     {
-        $result = $this->entityManager->getRepository('JirasticBundle:Board')->findAll();
+        $result = $this->entityManager
+            ->getRepository('JirasticBundle:Board')
+            ->findByUser($this->token->getToken()->getUser());
         if ($result) {
             return false;
         }
@@ -130,10 +137,44 @@ class BoardLoaderUtils
     }
 
     /**
-     * @todo implement this
+     * @param array $jiraBoards Reponse from JIRA
      * @return void
      */
-    private function removeDeletedBoards()
+    private function removeDeletedBoards($jiraBoards)
     {
+        $dbIds = $this->getBoardsIds();
+        $jiraIds = array();
+
+        foreach ($jiraBoards as $board) {
+            array_push($jiraIds, $board->id);
+        }
+
+        $diffIds = array_diff($dbIds, $jiraIds);
+        $entityManager = $this->entityManager;
+        foreach ($diffIds as $diffId) {
+            $board = $entityManager->getRepository('JirasticBundle:Board')
+                ->findOneBy(
+                    array('jiraId' => $diffId, 'user' => $this->token->getToken()->getUser())
+                );
+            $board->removeStatuses();
+            $entityManager->remove($board);
+        }
+        $entityManager->flush();
+    }
+
+    /**
+     * @return array
+     */
+    private function getBoardsIds()
+    {
+        $user = $this->token->getToken()->getUser();
+        $dbBoards = $this->entityManager->getRepository('JirasticBundle:Board')->findByUser($user);
+
+        $ids = array();
+        foreach ($dbBoards as $board) {
+            array_push($ids, $board->getJiraId());
+        }
+
+        return $ids;
     }
 }
