@@ -55,7 +55,6 @@ class IssueRepository implements IssueRepositoryInterface
         $this->jiraGateway = $jiraGateway;
         $this->issuePrototype = $issuePrototype;
         $this->configUtils = $configUtils;
-
     }
 
     /**

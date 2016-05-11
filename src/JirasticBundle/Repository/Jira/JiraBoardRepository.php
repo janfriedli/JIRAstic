@@ -42,23 +42,16 @@ class JiraBoardRepository implements JiraBoardRepositoryInterface
      * @var BoardPrototype
      */
     private $boardPrototype;
-
-    /**
-     * @var EntityManager
-     */
-    private $em;
-
+    
     /**
      * JiraBoardRepository constructor.
      * @param JiraGateway    $jiraGateway    Gateway
      * @param BoardPrototype $boardPrototype Board Prototype
-     * @param EntityManager  $entityManager  Entity Manager
      */
-    public function __construct(JiraGateway $jiraGateway, BoardPrototype $boardPrototype, EntityManager $entityManager)
+    public function __construct(JiraGateway $jiraGateway, BoardPrototype $boardPrototype)
     {
         $this->jiraGateway = $jiraGateway;
         $this->boardPrototype = $boardPrototype;
-        $this->em = $entityManager;
     }
 
     /**

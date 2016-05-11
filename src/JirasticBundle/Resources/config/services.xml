@@ -79,14 +79,12 @@
         <service id="jirastic.repository.board" class="JirasticBundle\Repository\Jira\JiraBoardRepository">
             <argument type="service" id="jirastic.gateway.jira"/>
             <argument type="service" id="jirastic.prototype.board"/>
-            <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
         <service id="jirastic.repository.issue" class="JirasticBundle\Repository\Jira\IssueRepository">
             <argument type="service" id="jirastic.gateway.jira"/>
             <argument type="service" id="jirastic.prototype.issue"/>
             <argument type="service" id="jirastic.util.config"/>
-            <argument type="service" id="service_container"/>
         </service>
 
         <service id="jirastic.utils.board_loader" class="JirasticBundle\Util\BoardLoaderUtils">
