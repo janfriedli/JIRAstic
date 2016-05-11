@@ -20,7 +20,6 @@
         </service>
 
         <service id="jirastic.form.type.status" class="JirasticBundle\Form\StatusType">
-            <argument>%jirastic_font_awesome_icons%</argument>
             <argument>%jirastic_classes%</argument>
         </service>
 

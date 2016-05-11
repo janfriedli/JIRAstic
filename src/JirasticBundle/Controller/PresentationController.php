@@ -112,7 +112,7 @@ class PresentationController
         if (!$this->configUtils->customFieldsSet()) {
             $this->session
                 ->getFlashBag()
-                ->add('warning', 'Customfields are not configured. Contact the administrator');
+                ->add('warning', 'Customfields are not configured.');
         }
 
         return $this->templating->renderResponse(

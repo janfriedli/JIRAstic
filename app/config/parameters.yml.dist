@@ -3,7 +3,7 @@
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_host:     127.0.0.1
-    database_name:     symfony
+    database_name:     jirastic
     database_user:     root
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
@@ -19,8 +19,6 @@ parameters:
 
     locale: en
 
-
-
     #auth
     jirastic_api_url:   https://issue.swisscom.ch
     jira.consumer_key: somekey
@@ -29,11 +27,6 @@ parameters:
 
 
     jirastic_classes:   {resolved: Resolved, inprogress: In Progress, unresolved: Unresolved}
-
-    jirastic_font_awesome_icons:
-        fa-check-circle-o: fa-check-circle-o
-        fa-cog: fa-cog
-        fa-exclamation-triangle: fa-exclamation-triangle
 
     jirastic_show_sprints_x_months_back: 6
 
