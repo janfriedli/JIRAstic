@@ -3,7 +3,7 @@
  * Jira Gateway Tests
  */
 
-namespace JirasticBundle\Tests\Gateway;
+namespace JirasticBundle\Tests\Repository;
 
 use Guzzle\Http\Client;
 use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
@@ -13,12 +13,12 @@ use JirasticBundle\Repository\Jira\JiraBoardRepository;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 /**
- * @package JirasticBundle\Tests\Gateway
+ * @package JirasticBundle\Tests\Repository
  * @author   Jan Friedli <jan.friedli@swisscom.com>
  * @license  https://opensource.org/licenses/GPL-3.0 Public License
  * @link     http://www.swisscom.ch
  *
- * Class JiraGatewayTest
+ * Class Jira Board Repo Tests
  */
 class JiraBoardRepositoryTest extends \PHPUnit_Framework_TestCase
 {
