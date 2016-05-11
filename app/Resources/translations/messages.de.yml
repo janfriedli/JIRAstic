@@ -1,10 +1,11 @@
 #Login
-JIRAstic Config: Jirastic Konfiguration
+States: Stati
 Presentation: Präsentation
-JIRAstic login: JIRAstic Login
-Password: Passwort
-Username: Benutzername
+Login with JIRA: Mit JIRA anmelden
 Login: einloggen
+An error occured: Ein Fehler ist aufgetreten
+Boards: Boards
+Hi: Hallo
 
 #Config overview
 Configurable Boards: Editierbare Boards
@@ -21,9 +22,24 @@ Title: Titel
 Title short: Kurztitel
 Bgcolor: Hintergrundfarbe (Hex)
 Icon: Icon
+Icon: Icon
 Class: CSS Klasse
 Order id: Reihenfolge
 Status mapping: Statuszuordnung
+Your changes were saved!: Änderungen wurden gespeichert
+Configuration: Konfiguration
+
+#Customfields
+Customfields: Custom Felder
+edit Customfields: Customfields anpassen
+Edit: anpassen
+Abort: abbrechen
+Test instructions: Test Instruktionen
+Story points: Story Punkte
+Story points estimated: Geschätzte Story Punkte
+Story owner: Story Besitzer
+Action: Aktion
+Customfields are not configured.: Custom Felder wurden nicht konfiguriert.
 
 #Validation
 This value needs to be an integer: Dieser Wert muss eine Zahl sein
@@ -67,4 +83,6 @@ hide summary: ausblenden
 Test Instructions: Testinstruktionen
 Summary: Zusammenfassung
 
-
+# Footer
+JIRAstic was developed by: JIRAstic wurde entwickelt von:
+and invented by: Idee:

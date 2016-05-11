@@ -24,6 +24,11 @@ jQuery(document).ready(function () {
         addStateForm($collectionHolder, $('#accordion'), newFormsSum);
         newFormsSum++;
     });
+
+    //show icon picker when defined
+    if(typeof $('.icp-auto').iconpicker == 'function') {
+        $('.icp-auto').iconpicker();
+    }
 });
 
 

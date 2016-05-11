@@ -1,6 +1,11 @@
 {% extends "securityBase.html.twig" %}
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 
+{% block head %}
+    <link href="{{ asset('css/fontawesome-iconpicker.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/fontawesome-iconpicker.min.js') }}"></script>
+{% endblock %}
+
 {% block content %}
     <h1>{% trans %}Edit States for Board{% endtrans %} "{{ edit_form.vars.value.name }}"</h1>
     <div class="panel-group" id="accordion" data-prototype="{{ form_widget(edit_form.statuses.vars.prototype)|e }}">

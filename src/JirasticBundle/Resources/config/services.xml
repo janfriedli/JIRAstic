@@ -16,11 +16,16 @@
         <service id="jirastic.util.config" class="JirasticBundle\Util\ConfigUtils">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="service_container" />
+            <argument type="service" id="security.token_storage"/>
         </service>
 
         <service id="jirastic.form.type.status" class="JirasticBundle\Form\StatusType">
-            <argument>%jirastic_font_awesome_icons%</argument>
             <argument>%jirastic_classes%</argument>
+        </service>
+
+        <service id="jirastic.form.type.customfield" class="JirasticBundle\Form\CustomfieldType">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument>%jirastic_api_customfields_endpoint%</argument>
         </service>
 
         <service id="jirastic.form.type.board" class="JirasticBundle\Form\BoardType">
@@ -32,9 +37,11 @@
         </service>
 
         <service id="jirastic.gateway.jira" class="JirasticBundle\Gateway\JiraGateway">
-            <argument>%jirastic_username%</argument>
-            <argument>%jirastic_password%</argument>
             <argument type="service" id="guzzle_client"/>
+            <argument type="service" id="security.token_storage"/>
+            <argument>%jira.private_key_path%</argument>
+            <argument>%jira.consumer_key%</argument>
+            <argument>%jira.consumer_secret%</argument>
         </service>
 
         <service id="jirastic.presentation.controller" class="JirasticBundle\Controller\PresentationController">
@@ -43,6 +50,8 @@
             <argument type="service" id="jirastic.jira_api"/>
             <argument type="service" id="form.factory"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="jirastic.util.config"/>
+            <argument type="service" id="session"/>
         </service>
 
         <service id="jirastic.jira_api" class="JirasticBundle\Service\JiraAPI">
@@ -78,10 +87,13 @@
             <argument type="service" id="jirastic.prototype.issue"/>
             <argument type="service" id="jirastic.util.config"/>
             <argument type="service" id="service_container"/>
-            <argument>%jirastic_testInstructionFieldId%</argument>
-            <argument>%jirastic_storyPointsFieldId%</argument>
-            <argument>%jirastic_storyPointsEstimateFieldId%</argument>
-            <argument>%jirastic_ownerNameFieldId%</argument>
+        </service>
+
+        <service id="jirastic.utils.board_loader" class="JirasticBundle\Util\BoardLoaderUtils">
+            <argument type="service" id="jirastic.gateway.jira"/>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%kernel.root_dir%</argument>
+            <argument type="service" id="security.token_storage"/>
         </service>
 
     </services>

@@ -3,6 +3,7 @@ Reveal.addEventListener( 'ready', function( event ) {
     Reveal.addEventListener( 'slidechanged', function( event ) {
         Reveal.getTotalSlides();
         if(Reveal.isLastSlide()){
+            $("#jirastic-spinner").html('<div id="reload-overlay"><i id="spinner" class="fa fa-refresh fa-spin"></i></div>');
             setTimeout(function(){location.reload()}, 100);
         }
     } );
@@ -10,7 +11,6 @@ Reveal.addEventListener( 'ready', function( event ) {
 } );
 
 function toggleDescriptionTestIsctruction() {
-    $('.descriptionDiv').hide();
     var showDescription = true;
 
     $('.toggleDescTest').click(function(){

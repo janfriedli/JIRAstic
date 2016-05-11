@@ -1,0 +1,31 @@
+{% extends "securityBase.html.twig" %}
+
+{% block content %}
+    <h1>{% trans %}Customfields{% endtrans %}</h1>
+
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>{% trans %}Test instructions{% endtrans %}</th>
+                <th>{% trans %}Story points{% endtrans %}</th>
+                <th>{% trans %}Story points estimated{% endtrans %}</th>
+                <th>{% trans %}Story owner{% endtrans %}</th>
+                <th>{% trans %}Action{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customfield in customfields %}
+            <tr>
+                <td>{{ customfield.testInstructions }}</td>
+                <td>{{ customfield.storyPoints }}</td>
+                <td>{{ customfield.storyPointsEstimated }}</td>
+                <td>{{ customfield.storyOwner }}</td>
+                <td>
+                    <a href="{{ path('admin_customfield_edit', { 'id': customfield.id }) }}"><i class="fa fa-cog"> {% trans %}Edit{% endtrans %}</i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

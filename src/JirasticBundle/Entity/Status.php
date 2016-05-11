@@ -286,4 +286,28 @@ class Status
     {
         return (string) $this->title;
     }
+
+    /**
+     * Add board
+     *
+     * @param \JirasticBundle\Entity\Board $board Board
+     * @return Status
+     */
+    public function addBoard(\JirasticBundle\Entity\Board $board)
+    {
+        $this->board[] = $board;
+
+        return $this;
+    }
+
+    /**
+     * Remove board
+     *
+     * @param \JirasticBundle\Entity\Board $board Board
+     * @return void
+     */
+    public function removeBoard(\JirasticBundle\Entity\Board $board)
+    {
+        $this->board->removeElement($board);
+    }
 }

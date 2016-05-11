@@ -47,9 +47,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            {% if is_granted('ROLE_ADMIN') %}
-                <a class="navbar-brand" href="{{ path('admin_board_index') }}"><i class="fa fa-cog"></i> {% trans %}JIRAstic Config{% endtrans %}</a>
-            {% else %}
+            {% if is_granted('ROLE_USER') %}
                 <a class="navbar-brand" href="{{ path('boards') }}"><i class="fa fa-home"></i> JIRAstic</a>
             {% endif %}
         </div>
@@ -59,9 +57,23 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_USER') %}
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cog"></i> {% trans %}Configuration{% endtrans %} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('admin_board_index') }}"> {% trans %}States{% endtrans %}</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_customfield_index') }}">{% trans %}Customfields{% endtrans %}</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="page-scroll {% if app.request.get('_route') == 'boards' %}active{% endif %}">
                         <a href="{{ path('boards') }}"><i class="fa fa-television"></i> {% trans %}Presentation{% endtrans %}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">{{ app.user.username }} <i class="fa fa-sign-out"></i></a>
                     </li>
                 {% endif %}
             </ul>
@@ -70,12 +82,29 @@
 </nav>
 
 <div class="top col-md-8 col-md-offset-2">
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ flash_message|trans }}</strong>
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('warning') %}
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ flash_message|trans }}</strong>
+        </div>
+    {% endfor %}
 {% block content %}
 {% endblock %}
 
 {% block footer %}
 {% endblock %}
 </div>
+<footer class="footer">
+    <div class="container-footer">
+        <p class="text-muted">{% trans %}JIRAstic was developed by{% endtrans %} <a href="https://github.com/janfriedli">Jan Friedli</a> {% trans %}and invented by{% endtrans %} <a href="https://github.com/paza">Patrick Zahnd</a></p>
+    </div>
+</footer>
 </body>
 </html>
 

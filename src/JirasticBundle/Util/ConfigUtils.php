@@ -6,6 +6,7 @@ namespace JirasticBundle\Util;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @package JirasticBundle\Util
@@ -28,14 +29,21 @@ class ConfigUtils
     private $container;
 
     /**
-     * ConfigUtils constructor.
-     * @param EntityManager $entityManager Entity Manager
-     * @param Container     $container     Container
+     * @var string
      */
-    public function __construct(EntityManager $entityManager, Container $container)
+    private $token;
+
+    /**
+     * ConfigUtils constructor.
+     * @param EntityManager         $entityManager Entity Manager
+     * @param Container             $container     Container
+     * @param TokenStorageInterface $tokenStorage  Token storage
+     */
+    public function __construct(EntityManager $entityManager, Container $container, TokenStorageInterface $tokenStorage)
     {
         $this->entityManager = $entityManager;
         $this->container = $container;
+        $this->token = $tokenStorage;
     }
 
     /**
@@ -110,5 +118,28 @@ class ConfigUtils
     {
         $params = $this->container->get('request')->attributes->get('_route_params');
         return intval($params['boardId']);
+    }
+
+    /**
+     * @return null|object
+     */
+    public function getCustomfields()
+    {
+        $customfields = $this->entityManager
+            ->getRepository('JirasticBundle:Customfield')
+            ->findOneByUser($this->token->getToken()->getUser());
+        return $customfields;
+    }
+
+    /**
+     * @return bool
+     */
+    public function customFieldsSet()
+    {
+        if ($this->getCustomfields()) {
+            return true;
+        }
+        
+        return false;
     }
 }
