@@ -1,7 +1,18 @@
 language: php
+
 php:
   - '5.4'
   - '5.5'
   - '5.6'
   - '7.0'
-script: phpunit --coverage-text
+script:
+  - phpunit --coverage-text
+
+before_script:
+  - cp app/config/parameters.yml.dist app/config/parameters.yml
+  - php app/console doctrine:database:create --no-interaction
+  - php app/console doctrine:schema:update --force --no-interaction
+  - composer install
+
+services:
+  - mysql
