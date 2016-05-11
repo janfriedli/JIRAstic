@@ -29,6 +29,7 @@ class JiraBoardRepositoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * prepare Baord Repo
+     * @return void
      */
     public function setUp()
     {
@@ -54,7 +55,10 @@ class JiraBoardRepositoryTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->will($this->returnvalue($requestMock));
 
-        $sprintRepo = $this->getMockBuilder('JirasticBundle\Repository\Jira\SprintRepository')->disableOriginalConstructor()->getMock();
+        $sprintRepo = $this->getMockBuilder('JirasticBundle\Repository\Jira\SprintRepository')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $boardProto = new BoardPrototype($sprintRepo);
         $this->boardRepository = new JiraBoardRepository($this->getJiraGateway($guzzleMock), $boardProto);
     }
