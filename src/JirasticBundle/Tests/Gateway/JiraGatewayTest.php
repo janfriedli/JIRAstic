@@ -5,7 +5,10 @@
 
 namespace JirasticBundle\Tests\Gateway;
 
+use Guzzle\Http\Client;
+use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use JirasticBundle\Gateway\JiraGateway;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 /**
  * @package JirasticBundle\Tests\Gateway
@@ -47,8 +50,7 @@ class JiraGatewayTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->will($this->returnvalue($requestMock));
 
-        $jiraGateway = new JiraGateway('usr', 'pw', $guzzleMock);
-        $response = $jiraGateway->getRequest('/yolo');
+        $response = $this->getJiraGateway($guzzleMock)->getRequest('/yolo');
 
         $this->assertInternalType('array', $response->views);
 
@@ -83,8 +85,7 @@ class JiraGatewayTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->will($this->returnCallback(array($this, 'callbackForUrl')));
 
-        $jiraGateway = new JiraGateway('usr', 'pw', $guzzleMock);
-        $jiraGateway->getRequest('/yolo');
+        $this->getJiraGateway($guzzleMock)->getRequest('/yolo');
     }
 
     /**
@@ -116,45 +117,8 @@ class JiraGatewayTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->will($this->returnCallback(array($this, 'callbackForUrlArgs')));
 
-        $jiraGateway = new JiraGateway('usr', 'pw', $guzzleMock);
-        $jiraGateway->getRequest('/yolo/%s?%d', array('tst', 1));
+        $this->getJiraGateway($guzzleMock)->getRequest('/yolo/%s?%d', array('tst', 1));
 
-    }
-
-    /**
-     * Test if the username and password are set correctly
-     *
-     * @return void
-     */
-    public function testAuthArgsCorrect()
-    {
-        $responseMock = $this->getMockBuilder('Guzzle\Http\Message\Response')
-            ->setMethods(array('getBody'))
-            ->setConstructorArgs(array(200))
-            ->getMock();
-        $responseMock->expects($this->once())
-            ->method('getBody')
-            ->will($this->returnvalue(json_encode($this->getTestArray())));
-
-        $this->requestMock = $this->getMockBuilder('Guzzle\Http\Message\Request')
-            ->setConstructorArgs(array('GET', 'http:/test.ch'))
-            ->getMock();
-        $this->requestMock->expects($this->once())
-            ->method('send')
-            ->will($this->returnvalue($responseMock));
-        $this->requestMock->expects($this->once())
-            ->method('setAuth')
-            ->will($this->returnCallback(array($this, 'callbackForAuth')));
-
-        $guzzleMock = $this->getMockBuilder('Guzzle\Http\Client')
-            ->setConstructorArgs(array('http:/test.ch'))
-            ->getMock();
-        $guzzleMock->expects($this->once())
-            ->method('get')
-            ->will($this->returnvalue($this->requestMock));
-
-        $jiraGateway = new JiraGateway('usr', 'pw', $guzzleMock);
-        $jiraGateway->getRequest('/yolo/%s?%d', array('tst', 1));
     }
 
     /**
@@ -187,8 +151,7 @@ class JiraGatewayTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->will($this->returnCallback(array($this, 'callbackForUrlArgsWrong')));
 
-        $jiraGateway = new JiraGateway('usr', 'pw', $guzzleMock);
-        $jiraGateway->getRequest('/yolo/%s?%d', array('tst'));
+        $this->getJiraGateway($guzzleMock)->getRequest('/yolo/%s?%d', array('tst'));
     }
 
     /**
@@ -252,6 +215,32 @@ class JiraGatewayTest extends \PHPUnit_Framework_TestCase
                 ),
 
             )
+        );
+    }
+
+    /**
+     * @return TokenStorage
+     */
+    private function getTokenStorage()
+    {
+        $token = new OAuthToken(array('oauth_token' => 'oauthToken', 'oauth_token_secret' => 'secret'));
+        $toStorage = new TokenStorage();
+        $toStorage->setToken($token);
+        return $toStorage;
+    }
+
+    /**
+     * @param Client $guzzleMock Guzzle Mock
+     * @return JiraGateway
+     */
+    private function getJiraGateway($guzzleMock)
+    {
+        return new JiraGateway(
+            $guzzleMock,
+            $this->getTokenStorage(),
+            'somePath/to/a/file.pem',
+            'key',
+            'secret'
         );
     }
 }
