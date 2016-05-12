@@ -9,6 +9,7 @@ php:
 
 script:
   - phpunit --coverage-text
+  - ls -al bin/
   - composer check
 
 before_script:
