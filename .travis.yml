@@ -9,12 +9,11 @@ php:
 
 script:
   - phpunit --coverage-text
-  - ls -al bin/
   - composer check
 
 before_script:
-  - composer install --no-interaction  --ignore-platform-reqs --no-scripts
+  - composer install --no-interaction  --ignore-platform-reqs --no-scripts --prefer-dist
 
 cache:
-    directories:
-    - vendor/
+  directories:
+    - $HOME/.composer/cache
