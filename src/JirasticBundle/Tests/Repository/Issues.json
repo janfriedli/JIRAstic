@@ -1,0 +1,210 @@
+{
+  "issues": [
+    {
+      "expand": "editmeta,renderedFields,transitions,changelog,operations",
+      "id": "1139789",
+      "self": "https://test.ch/rest/api/latest/issue/1139789",
+      "key": "EVO-3180",
+      "fields": {
+        "progress": {
+          "progress": 0,
+          "total": 0
+        },
+        "customfield_10755": null,
+        "summary": "As a Developer I want the NIOS worker to set the status to done if nothing needs to be done",
+        "customfield_10614": null,
+        "customfield_10756": null,
+        "issuetype": {
+          "self": "https://test.ch/rest/api/2/issuetype/16",
+          "id": "16",
+          "description": "Created by JIRA Agile - do not edit or delete. Issue type for a user story.",
+          "iconUrl": "https://test.ch/images/icons/issuetypes/sales.png",
+          "name": "User Story",
+          "subtask": false
+        },
+        "customfield_10610": [
+          {
+            "self": "https://test.ch/rest/api/2/customFieldOption/22640",
+            "value": "Impediment",
+            "id": "22640"
+          }
+        ],
+        "reporter": {
+          "self": "https://test.ch/rest/api/2/user?username=tgdacsa1",
+          "name": "tgdacsa1",
+          "key": "tgdacsa1",
+          "emailAddress": "Samuel.Ackermann@swisscom.com",
+          "avatarUrls": {
+            "16x16": "https://test.ch/secure/useravatar?size=xsmall&ownerId=tgdacsa1&avatarId=17974",
+            "24x24": "https://test.ch/secure/useravatar?size=small&ownerId=tgdacsa1&avatarId=17974",
+            "32x32": "https://test.ch/secure/useravatar?size=medium&ownerId=tgdacsa1&avatarId=17974",
+            "48x48": "https://test.ch/secure/useravatar?ownerId=tgdacsa1&avatarId=17974"
+          },
+          "displayName": "Ackermann Samuel, ENT-BAN",
+          "active": true,
+          "timeZone": "Europe/Zurich"
+        },
+        "customfield_16621": null,
+        "customfield_16622": null,
+        "customfield_17623": null,
+        "updated": "2016-05-10T14:38:29.000+0200",
+        "created": "2016-03-01T15:08:05.000+0100",
+        "customfield_17622": null,
+        "customfield_17621": null,
+        "description": "",
+        "priority": {
+          "self": "https://test.ch/rest/api/2/priority/3",
+          "iconUrl": "https://test.ch/images/icons/priorities/major.png",
+          "name": "High",
+          "id": "3"
+        },
+        "customfield_17620": null,
+        "customfield_17822": null,
+        "issuelinks": [
+          {
+            "id": "473263",
+            "self": "https://test.ch/rest/api/2/issueLink/473263",
+            "type": {
+              "id": "10001",
+              "name": "Dependency",
+              "inward": "is prerequisite for",
+              "outward": "depends on",
+              "self": "https://test.ch/rest/api/2/issueLinkType/10001"
+            }
+          }
+        ],
+        "customfield_17820": null,
+        "customfield_17821": {
+          "self": "https://test.ch/rest/api/2/customFieldOption/42110",
+          "value": "Std-Basis",
+          "id": "42110"
+        },
+        "subtasks": [],
+        "customfield_10478": null,
+        "status": {
+          "self": "https://test.ch/rest/api/2/status/3",
+          "description": "This issue is being actively worked on at the moment by the assignee.",
+          "iconUrl": "https://test.ch/images/icons/statuses/inprogress.png",
+          "name": "open",
+          "id": "1",
+          "statusCategory": {
+            "self": "https://test.ch/rest/api/2/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "open"
+          }
+        },
+        "labels": [],
+        "workratio": -1,
+        "project": {
+          "self": "https://test.ch/rest/api/2/project/19700",
+          "id": "19700",
+          "key": "EVO",
+          "name": "eVoja SWE",
+          "projectCategory": {
+            "self": "https://test.ch/rest/api/2/projectCategory/10080",
+            "id": "10080",
+            "description": "Swisscom IT Services",
+            "name": "ITS"
+          }
+        },
+        "environment": null,
+        "customfield_15945": {
+          "self": "https://test.ch/rest/api/2/customFieldOption/37319",
+          "value": "No",
+          "id": "37319"
+        },
+        "lastViewed": "2016-04-28T13:58:27.346+0200",
+        "customfield_12628": null,
+        "timeoriginalestimate": null,
+        "customfield_10150": 1.0,
+        "customfield_10820": null,
+        "customfield_14122": null,
+        "customfield_14123": null,
+        "customfield_14128": null,
+        "customfield_14129": null,
+        "fixVersions": [],
+        "resolution": null,
+        "customfield_13520": "EVO-3032",
+        "resolutiondate": null,
+        "customfield_15943": null,
+        "customfield_15944": null,
+        "creator": {
+          "self": "https://test.ch/rest/api/2/user?username=tgdacsa1",
+          "name": "tgdacsa1",
+          "key": "tgdacsa1",
+          "emailAddress": "Samuel.Ackermann@swisscom.com",
+          "displayName": "Ackermann Samuel, ENT-BAN",
+          "active": true,
+          "timeZone": "Europe/Zurich"
+        },
+        "customfield_17121": [
+          {
+            "self": "https://test.ch/rest/api/2/customFieldOption/40237",
+            "value": "Neu",
+            "id": "40237"
+          }
+        ],
+        "customfield_15942": null,
+        "customfield_12126": null,
+        "aggregatetimeoriginalestimate": null,
+        "customfield_17320": null,
+        "duedate": null,
+        "customfield_13924": null,
+        "customfield_10358": null,
+        "customfield_10452": null,
+        "customfield_15320": "0|hzzxlv:wg",
+        "customfield_10102": null,
+        "customfield_15524": null,
+        "customfield_15522": null,
+        "assignee": {
+          "self": "https://test.ch/rest/api/2/user?username=taafrja6",
+          "name": "taafrja6",
+          "key": "taafrja6",
+          "emailAddress": "Jan.Friedli@swisscom.com",
+          "displayName": "Friedli Jan, GHR-DEV",
+          "active": true,
+          "timeZone": "Europe/Zurich"
+        },
+        "customfield_18021": null,
+        "customfield_18022": null,
+        "customfield_15621": null,
+        "customfield_18023": null,
+        "customfield_18025": null,
+        "customfield_12223": 1.0,
+        "aggregatetimeestimate": null,
+        "versions": [],
+        "customfield_10342": null,
+        "timeestimate": null,
+        "customfield_13420": null,
+        "customfield_15830": "Waiting for EVO-4790 to finish",
+        "customfield_16025": null,
+        "customfield_11626": null,
+        "aggregatetimespent": null
+      },
+      "renderedFields": {
+        "customfield_15524": "",
+        "customfield_10478": "",
+        "customfield_15522": "",
+        "customfield_15621": "",
+        "customfield_15943": "",
+        "timespent": null,
+        "customfield_15942": "",
+        "aggregatetimeestimate": null,
+        "customfield_12126": "",
+        "aggregatetimeoriginalestimate": null,
+        "environment": "",
+        "updated": "10.05.2016 14:38",
+        "created": "01.03.2016 15:08",
+        "description": "description1",
+        "timeestimate": null,
+        "lastViewed": "28.04.2016 13:58",
+        "customfield_11626": "",
+        "customfield_12628": "",
+        "timeoriginalestimate": null,
+        "aggregatetimespent": null
+      }
+    }
+  ]
+}
