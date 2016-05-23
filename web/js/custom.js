@@ -72,7 +72,11 @@ function addStateFormDeleteLink($tagFormLi) {
         e.preventDefault();
 
         // remove the li for the tag form
-        $tagFormLi.remove();
+        if(!$tagFormLi.is(':only-child')) {
+            $tagFormLi.remove();
+        } else {
+            bootbox.alert('You need at least one state');
+        }
     });
 }
 
