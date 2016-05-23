@@ -4,6 +4,7 @@
  */
 namespace JirasticBundle\Controller;
 
+use JirasticBundle\Entity\Status;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -73,10 +74,17 @@ class BoardController extends Controller
                 $this->get('doctrine.orm.entity_manager'),
                 $this->get('jirastic.gateway.jira')
             );
+        
+        if(!$board->getStatuses()->getValues()) {
+            $status = new Status();
+            $status->setTitle('Sample State');
+            $board->addStatus($status);
+        }
 
         $deleteForm = $this->createDeleteForm($board);
         $editForm = $this->createForm($this->get('jirastic.form.type.board'), $board);
         $editForm->handleRequest($request);
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $board->setLastModified(new \DateTime());

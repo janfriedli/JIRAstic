@@ -51,7 +51,8 @@ class StatusType extends AbstractType
                     'class',
                     ChoiceType::class,
                     array(
-                        'choices' => $this->classes
+                        'choices' => $this->classes,
+                        'label' => 'Bubble Style'
                     )
                 )
                 ->add('orderId')

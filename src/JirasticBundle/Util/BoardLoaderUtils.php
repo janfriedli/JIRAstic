@@ -90,13 +90,7 @@ class BoardLoaderUtils
 
         $this->entityManager->flush();
 
-        if ($emptyDb) {
-            $process = new Process('php '.$this->rootDir.'/console doctrine:fixtures:load --no-interaction --append');
-            $process->run();
-            if (!$process->isSuccessful()) {
-                throw new ProcessFailedException($process);
-            }
-        } else {
+        if (!$emptyDb) {
             $this->removeDeletedBoards($response->values);
         }
 
