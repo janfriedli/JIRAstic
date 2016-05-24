@@ -75,7 +75,7 @@ class BoardController extends Controller
                 $this->get('jirastic.gateway.jira')
             );
         
-        if(!$board->getStatuses()->getValues()) {
+        if (!$board->getStatuses()->getValues()) {
             $status = new Status();
             $status->setTitle('Sample State');
             $board->addStatus($status);
