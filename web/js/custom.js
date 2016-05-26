@@ -24,6 +24,8 @@ jQuery(document).ready(function () {
         addStateForm($collectionHolder, $('#accordion'), newFormsSum);
         newFormsSum++;
     });
+
+    addFontAwesomePicker();
 });
 
 
@@ -44,7 +46,7 @@ function addStateForm($collectionHolder, $newLinkLi, newFormsSum) {
     var clone = current.clone();
     clone.insertAfter(current);
     clone.find('.panel-body').html(newForm);
-    //the id dosnt matter it has just to match the link
+    //the id dosen't matter it has just to match the link
     var rand = 'randId' + Math.floor((Math.random() * 100) + 30)
 
     clone.find('div:nth-child(2)').attr('id', rand);
@@ -53,6 +55,12 @@ function addStateForm($collectionHolder, $newLinkLi, newFormsSum) {
     clone.find('a').text('new State ' + newFormsSum);
 
     addStateFormDeleteLink(clone);
+
+    addFontAwesomePicker();
+
+    //adding color picker to new states too
+    new jscolor($('.jscolor:last')[0]);
+
 }
 
 function addStateFormDeleteLink($tagFormLi) {
@@ -64,6 +72,18 @@ function addStateFormDeleteLink($tagFormLi) {
         e.preventDefault();
 
         // remove the li for the tag form
-        $tagFormLi.remove();
+        if(!$tagFormLi.is(':only-child')) {
+            $tagFormLi.remove();
+        } else {
+            bootbox.alert('You need at least one state');
+        }
     });
+}
+
+function addFontAwesomePicker() {
+    //show icon picker when defined
+    if(typeof $('.icp-auto').iconpicker == 'function') {
+        $('.icp-auto').iconpicker();
+    }
+
 }

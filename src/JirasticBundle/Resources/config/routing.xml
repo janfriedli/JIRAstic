@@ -4,14 +4,6 @@
         xsi:schemaLocation="http://symfony.com/schema/routing
         http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="login" path="/login">
-        <default key="_controller">JirasticBundle:Security:login</default>
-    </route>
-
-    <route id="login_check" path="/login_check">
-        <default key="_controller">JirasticBundle:Security:loginCheck</default>
-    </route>
-
     <route id="index" path="/">
         <default key="_controller">jirastic.presentation.controller:indexAction</default>
     </route>

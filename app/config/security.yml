@@ -2,17 +2,19 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-              users:
-                  jirastic:
-                      password: $2a$12$khjc9H4I4YXtpLi8zSgycu5yp8NFsqRgLWK0GgtMIFnWMHKgL1LAO
-                      roles: 'ROLE_JIRASTIC_USER'
-                  pazaa:
-                      password: $2a$12$kx0q9pBzGGE.V7YfDxkauOKRw9pX6RHnzIrM6RSffv/Q5Zlf4vlk2
-                      roles: 'ROLE_ADMIN'
+        hwi:
+            id: hwi_oauth.user.provider
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -20,24 +22,32 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
+        secured_area:
             anonymous: ~
-            # activate different ways to authenticate
+            oauth:
+                resource_owners:
+                    jira:           "/login/check-jira"
+                login_path:        /login
+                use_forward:       false
+                failure_path:      /login
+                default_target_path: /boards
 
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+                oauth_user_provider:
+                    service: my.custom.user_provider
+            pattern: ^/
             form_login:
-                login_path: /login
-                check_path: /login_check
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
 
-    role_hierarchy:
-            ROLE_ADMIN: ROLE_JIRASTIC_USER
+            logout:       true
+            anonymous:    true
 
     access_control:
-        # require ROLE_ADMIN for /admin*
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/board, roles: ROLE_JIRASTIC_USER }
-
-    encoders:
-            Symfony\Component\Security\Core\User\User:
-                        algorithm: bcrypt
-                        cost: 12
+        - { path: ^/admin, roles: ROLE_USER }
+        - { path: ^/board, roles: ROLE_USER }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_USER }

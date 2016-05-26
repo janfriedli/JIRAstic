@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * @package JirasticBundle\Form
@@ -24,23 +25,17 @@ class StatusType extends AbstractType
     /**
      * @var array
      */
-    private $fontAwesomeIcons;
-
-    /**
-     * @var array
-     */
     private $classes;
 
     /**
      * StatusType constructor.
-     * @param array $fontAwesomeIcons List of FontAwesome icons class names
-     * @param array $classes          List of css class names
+     * @param array $classes List of css class names
      */
-    public function __construct($fontAwesomeIcons, $classes)
+    public function __construct($classes)
     {
-        $this->fontAwesomeIcons = $fontAwesomeIcons;
         $this->classes = $classes;
     }
+
     /**
      * @param FormBuilderInterface $builder Form Builder
      * @param array                $options Options
@@ -51,18 +46,13 @@ class StatusType extends AbstractType
         $builder->add('title')
                 ->add('titleShort')
                 ->add('bgcolor', null, array( 'attr'=> array( 'class'=>'jscolor')))
-                ->add(
-                    'icon',
-                    ChoiceType::class,
-                    array(
-                        'choices' => $this->fontAwesomeIcons
-                    )
-                )
+                ->add('icon', TextType::class, array('attr' => array('class' => 'form-control icp icp-auto')))
                 ->add(
                     'class',
                     ChoiceType::class,
                     array(
-                        'choices' => $this->classes
+                        'choices' => $this->classes,
+                        'label' => 'Bubble Style'
                     )
                 )
                 ->add('orderId')
