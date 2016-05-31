@@ -6,6 +6,7 @@
 namespace JirasticBundle\EventListener;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -45,7 +46,7 @@ class SecurityLoginListener
      * @param AuthorizationChecker     $security   Security
      * @param TraceableEventDispatcher $dispatcher Dispatcher
      */
-    public function __construct(Router $router, AuthorizationChecker $security, TraceableEventDispatcher $dispatcher)
+    public function __construct(Router $router, AuthorizationChecker $security, EventDispatcherInterface $dispatcher)
     {
         $this->router = $router;
         $this->security = $security;
