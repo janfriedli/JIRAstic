@@ -68,11 +68,8 @@ class SecurityLoginListener
      */
     public function onKernelResponse(FilterResponseEvent $event)
     {
-        // 'If' order is important! because of the role hierarchy
-        if ($this->security->isGranted('ROLE_OAUTH_USER')) {
+        if ($this->security->isGranted('ROLE_USER')) {
             $response = new RedirectResponse($this->router->generate('admin_board_index'));
-        } elseif ($this->security->isGranted('ROLE_USER')) {
-            $response = new RedirectResponse($this->router->generate('boards'));
         } else {
             throw new AccessDeniedHttpException();
         }
