@@ -69,7 +69,7 @@ class SecurityLoginListener
     public function onKernelResponse(FilterResponseEvent $event)
     {
         if ($this->security->isGranted('ROLE_USER')) {
-            $response = new RedirectResponse($this->router->generate('admin_board_index'));
+            $response = new RedirectResponse($this->router->generate('boards'));
         } else {
             throw new AccessDeniedHttpException();
         }

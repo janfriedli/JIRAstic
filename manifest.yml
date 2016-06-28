@@ -1,0 +1,16 @@
+---
+applications:
+- name: JIRAstic
+  buildpack: https://github.com/cloudfoundry/php-buildpack
+  memory: 256MB
+  instances: 1
+  host: jirastic
+  command:
+  env:
+      SYMFONY_ENV: prod
+      DOCUMENT_ROOT: web
+      PHP_INI_SCAN_DIR: /home/vcap/app/.bp-config/php/php.d
+      PHP_BINARY: /home/vcap/app/.bp-config/bin/php
+
+  services:
+  - maria-jirastic

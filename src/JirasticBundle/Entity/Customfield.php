@@ -31,7 +31,7 @@ class Customfield
     /**
      * @var string
      *
-     * @ORM\Column(name="test_instructions", type="string", length=100, unique=true)
+     * @ORM\Column(name="test_instructions", type="string", length=100, unique=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
@@ -43,7 +43,7 @@ class Customfield
     /**
      * @var string
      *
-     * @ORM\Column(name="story_points", type="string", length=100, unique=true)
+     * @ORM\Column(name="story_points", type="string", length=100, unique=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
@@ -55,7 +55,7 @@ class Customfield
     /**
      * @var string
      *
-     * @ORM\Column(name="story_points_estimated", type="string", length=100, unique=true)
+     * @ORM\Column(name="story_points_estimated", type="string", length=100, unique=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
@@ -67,7 +67,7 @@ class Customfield
     /**
      * @var string
      *
-     * @ORM\Column(name="story_owner", type="string", length=255, unique=true)
+     * @ORM\Column(name="story_owner", type="string", length=255, unique=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",

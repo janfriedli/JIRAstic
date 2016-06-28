@@ -1,0 +1,15 @@
+{
+  "ADMIN_EMAIL": "lucas.bickel@swisscom.com",
+  "WEB_SERVER": "nginx",
+  "PHP_VERSION": "{PHP_56_LATEST}",
+  "PHP_MODULES": ["cli", "fpm"],
+  "PHP_EXTENSIONS": ["bz2", "zlib", "curl", "mcrypt", "pdo", "mysqli", "pdo_mysql", "mysql", "openssl"],
+  "WEBDIR": "web",
+  "LIBDIR": ".",
+  "COMPOSER_VENDOR_DIR": "vendor/",
+  "COMPOSER_INSTALL_OPTIONS": [ "--no-dev", "--no-scripts"],
+  "ADDITIONAL_PREPROCESS_CMDS": [
+      "rm -rf app/app/cache",
+      "$PHP_BINARY $HOME/php/bin/composer.phar run-script --no-dev post-install-cmd"
+  ]
+}

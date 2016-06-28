@@ -111,7 +111,7 @@
             </section>
 
             {% for issuesByStatus in mappedIssues %}
-                <section data-background="{{issuesByStatus.bgcolor}}" id="{{issuesByStatus.id}}">
+                <section data-background-color="#{{issuesByStatus.bgcolor}}" id="{{issuesByStatus.id}}">
                     <div class="header">
                         <i class="fa {{issuesByStatus.icon}}"></i>
                         {{issuesByStatus.title}}

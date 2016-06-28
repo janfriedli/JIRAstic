@@ -36,7 +36,7 @@ class Board
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false, unique=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
@@ -48,7 +48,7 @@ class Board
     /**
      * @var int
      *
-     * @ORM\Column(name="jira_id", type="integer", nullable=false, unique=true)
+     * @ORM\Column(name="jira_id", type="integer", nullable=false, unique=false)
      * @Assert\NotBlank()
      * @Assert\Type(
      *     type="integer",
