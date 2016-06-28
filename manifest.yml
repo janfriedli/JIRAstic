@@ -5,7 +5,7 @@ applications:
   memory: 256MB
   instances: 1
   host: jirastic
-  command: ls -al
+  command:
   env:
       SYMFONY_ENV: prod
       DOCUMENT_ROOT: web
