@@ -5,15 +5,12 @@ applications:
   memory: 256MB
   instances: 1
   host: jirastic
-  paths:
-    - composer.json
-    - composer.lock
-    - app/
-    - src/
-    - web/
+  command: ls -al
   env:
       SYMFONY_ENV: prod
       DOCUMENT_ROOT: web
+      PHP_INI_SCAN_DIR: /home/vcap/app/.bp-config/php/php.d
+      PHP_BINARY: /home/vcap/app/.bp-config/bin/php
 
   services:
   - maria-jirastic

@@ -6,7 +6,6 @@
   "PHP_EXTENSIONS": ["bz2", "zlib", "curl", "mcrypt", "pdo", "mysqli", "pdo_mysql", "mysql", "openssl"],
   "WEBDIR": "web",
   "LIBDIR": ".",
-  "ZEND_EXTENSIONS": ["xdebug"],
   "COMPOSER_VENDOR_DIR": "vendor/",
   "COMPOSER_INSTALL_OPTIONS": [ "--no-dev", "--no-scripts"],
   "#Comment": "The --no-scripts above and the run-script below can maybe go away when the ini problem with hhvm and composer during staging is solved (and you can remove it, if you don't use HHVM at all)",

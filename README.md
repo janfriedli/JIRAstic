@@ -27,7 +27,7 @@ This will start a development server
 3. Add the missing params to ``app/config/paramters.yml`` or enter them during composer install
     * jira.consumer_key -> Consumer Key
     * jira.consumer_secret -> The consumer secret
-    * jira.private_key_path -> Absolute path to your private key file
+    * jira.private_key_path -> path to your private key file
     * jirastic_api_url -> the URL to your JIRA instance. *NO* trailing slash at the end.
 
 ### Database
@@ -50,3 +50,10 @@ To run the Unit Test:
 
 This assumes you have PHPUnit installed.
 ToDo: Write unit test ;)
+
+##Changelog
+
+| Version  | Changes |
+| -------- | ------- |
+| v1.0.0  | IPA finished  |
+| v2.0.0  | Introduced Oauth, Config per user |

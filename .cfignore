@@ -2,3 +2,4 @@ vendor/
 app/cache/
 *.phar
 .git/
+.idea/
