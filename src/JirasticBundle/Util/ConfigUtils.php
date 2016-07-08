@@ -6,7 +6,11 @@ namespace JirasticBundle\Util;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Router;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @package JirasticBundle\Util
@@ -39,7 +43,11 @@ class ConfigUtils
      * @param Container             $container     Container
      * @param TokenStorageInterface $tokenStorage  Token storage
      */
-    public function __construct(EntityManager $entityManager, Container $container, TokenStorageInterface $tokenStorage)
+    public function __construct(
+        EntityManager $entityManager,
+        Container $container,
+        TokenStorageInterface $tokenStorage
+    )
     {
         $this->entityManager = $entityManager;
         $this->container = $container;
@@ -105,7 +113,10 @@ class ConfigUtils
      */
     private function getStatesByBoardId($id)
     {
-        $board = $this->entityManager->getRepository('JirasticBundle:Board')->findOneBy(array('jiraId' => $id));
+        $board = $this->entityManager->getRepository('JirasticBundle:Board')->findOneBy(array('jiraId' => $id, 'user' => $this->token->getToken()->getUser()));
+        if(!$board) {
+            throw  new HttpException(500,"No states defined yet!");
+        }
         return $board->getStatuses();
     }
 
