@@ -51,6 +51,24 @@ class BoardController extends Controller
         );
     }
 
+
+    /**
+     * Instructs/Welcomes the user
+     *
+     * @Route("/welcome", name="admin_welcome")
+     * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function welcomeAction()
+    {
+        return $this->render(
+            'JirasticBundle:board:welcome.html.twig',
+            array(
+                'user' => $this->getUser()
+            )
+        );
+    }
+
     /**
      * Displays a form to edit an existing Board entity.
      *

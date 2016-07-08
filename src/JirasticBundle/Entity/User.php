@@ -50,6 +50,11 @@ class User extends BaseUser
     private $customfields;
 
     /**
+     * @ORM\Column(name="logged_in_before", type="boolean", nullable=true)
+     */
+    private $loggedInBefore;
+
+    /**
      * User constructor.
      * @return void
      */
@@ -164,5 +169,22 @@ class User extends BaseUser
     public function getCustomfields()
     {
         return $this->customfields;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getLoggedInBefore()
+    {
+        return $this->loggedInBefore;
+    }
+
+    /**
+     * @param boolean $loggedInBefore If first login happened
+     * @return void
+     */
+    public function setLoggedInBefore($loggedInBefore)
+    {
+        $this->loggedInBefore = $loggedInBefore;
     }
 }
