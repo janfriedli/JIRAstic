@@ -47,8 +47,7 @@ class ConfigUtils
         EntityManager $entityManager,
         Container $container,
         TokenStorageInterface $tokenStorage
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
         $this->container = $container;
         $this->token = $tokenStorage;
@@ -113,9 +112,11 @@ class ConfigUtils
      */
     private function getStatesByBoardId($id)
     {
-        $board = $this->entityManager->getRepository('JirasticBundle:Board')->findOneBy(array('jiraId' => $id, 'user' => $this->token->getToken()->getUser()));
-        if(!$board) {
-            throw  new HttpException(500,"No states defined yet!");
+        $board = $this->entityManager
+            ->getRepository('JirasticBundle:Board')
+            ->findOneBy(array('jiraId' => $id, 'user' => $this->token->getToken()->getUser()));
+        if (!$board) {
+            throw  new HttpException(500, "No states defined yet!");
         }
         return $board->getStatuses();
     }
