@@ -11,7 +11,9 @@
             <argument type="service" id="router"/>
             <argument type="service" id="security.authorization_checker"/>
             <argument type="service" id="event_dispatcher"/>
-        </service>
+             <argument type="service" id="security.context"/>
+             <argument type="service" id="doctrine.orm.entity_manager"/>
+         </service>
 
         <service id="jirastic.util.config" class="JirasticBundle\Util\ConfigUtils">
             <argument type="service" id="doctrine.orm.entity_manager" />
