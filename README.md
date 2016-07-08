@@ -42,6 +42,10 @@ and then:
 
 ```php app/console doctrine:schema:update --force```
 
+### Cloud Foundry Deploy
+
+To deploy to cf simply run ```cf push```
+
 ## Unit Tests
 
 To run the Unit Test:
@@ -57,3 +61,4 @@ ToDo: Write unit test ;)
 | -------- | ------- |
 | v1.0.0  | IPA finished  |
 | v2.0.0  | Introduced Oauth, Config per user |
+| v2.1.0  | Welcome page, Cloud Foundry deploy |
