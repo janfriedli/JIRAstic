@@ -72,8 +72,11 @@
                     <li class="page-scroll {% if app.request.get('_route') == 'boards' %}active{% endif %}">
                         <a href="{{ path('boards') }}"><i class="fa fa-television"></i> {% trans %}Presentation{% endtrans %}</a>
                     </li>
+                    <li class="page-scroll {% if app.request.get('_route') == 'admin_welcome' %}active{% endif %}" >
+                        <a href="{{ path('admin_welcome') }}"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a>
+                    </li>
                     <li>
-                        <a href="{{ path('fos_user_security_logout') }}">{{ app.user.username }} <i class="fa fa-sign-out"></i></a>
+                        <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> {{ app.user.username }} </a>
                     </li>
                 {% endif %}
             </ul>
