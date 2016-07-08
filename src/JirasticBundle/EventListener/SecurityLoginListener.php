@@ -54,10 +54,11 @@ class SecurityLoginListener
 
     /**
      * SecurityLoginListener constructor.
-     * @param Router                   $router        Router
-     * @param AuthorizationChecker     $security      Security
-     * @param TraceableEventDispatcher $dispatcher    Dispatcher
-     * @param EntityManager            $entityManager Entity manager
+     * @param Router                   $router          Router
+     * @param AuthorizationChecker     $security        Security
+     * @param TraceableEventDispatcher $dispatcher      Dispatcher
+     * @param SecurityContext          $securityContext SecurityContext
+     * @param EntityManager            $entityManager   Entity manager
      */
     public function __construct(
         Router $router,
@@ -89,7 +90,7 @@ class SecurityLoginListener
     public function onKernelResponse(FilterResponseEvent $event)
     {
         if ($this->security->isGranted('ROLE_USER')) {
-            if($this->isFirstLogin()) {
+            if ($this->isFirstLogin()) {
                 $response = new RedirectResponse($this->router->generate('admin_welcome'));
             } else {
                 $response = new RedirectResponse($this->router->generate('boards'));
@@ -101,14 +102,18 @@ class SecurityLoginListener
         $event->setResponse($response);
     }
 
-    private function isFirstLogin ()
+    /**
+     * Defines if it's the first login
+     * @return boolean
+     */
+    private function isFirstLogin()
     {
         $userLoggedIn = $this->securityContext->getToken()->getUser();
         $user = $this->entityManager
             ->getRepository('JirasticBundle:User')
             ->findOneById($userLoggedIn->getId());
 
-        if (is_null($user->getLoggedInBefore()) or $user->getLoggedInBefore() == false){
+        if (is_null($user->getLoggedInBefore()) or $user->getLoggedInBefore() == false) {
             $user->setLoggedInBefore(true);
             $this->entityManager->persist($user);
             $this->entityManager->flush();

@@ -172,7 +172,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getLoggedInBefore()
     {
@@ -180,7 +180,8 @@ class User extends BaseUser
     }
 
     /**
-     * @param mixed $loggedInBefore
+     * @param boolean $loggedInBefore If first login happened
+     * @return void
      */
     public function setLoggedInBefore($loggedInBefore)
     {
