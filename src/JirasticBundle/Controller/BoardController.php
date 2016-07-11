@@ -109,7 +109,6 @@ class BoardController extends Controller
             $em->persist($board);
             $em->flush();
 
-            // display saved flash message
             $this->addFlash(
                 'notice',
                 'Your changes were saved!'

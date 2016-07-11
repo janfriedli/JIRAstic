@@ -51,8 +51,7 @@ class StatusMapping
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=false)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      * @Assert\Type(
      *     type="string",
      *     message="This value needs to be a string"
