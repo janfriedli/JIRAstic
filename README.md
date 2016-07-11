@@ -55,7 +55,7 @@ To run the Unit Test:
 This assumes you have PHPUnit installed.
 ToDo: Write unit test ;)
 
-##Changelog
+###Changelog
 
 | Version  | Changes |
 | -------- | ------- |
@@ -63,3 +63,4 @@ ToDo: Write unit test ;)
 | v2.0.0  | Introduced Oauth, Config per user |
 | v2.1.0  | Cloud Foundry deploy |
 | v2.2.0  | Welcome page |
+| v2.2.1  | Navbar and validation bugfixes |
