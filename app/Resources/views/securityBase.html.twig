@@ -58,7 +58,7 @@
                     <a href="#page-top"></a>
                 </li>
                 {% if is_granted('ROLE_USER') %}
-                    <li class="dropdown">
+                    <li class="dropdown {% if app.request.get('_route') == 'admin_board_index' or app.request.get('_route') == 'admin_customfield_index' %}active{% endif %}">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cog"></i> {% trans %}Configuration{% endtrans %} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
