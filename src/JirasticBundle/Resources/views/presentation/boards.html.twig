@@ -8,9 +8,12 @@
 {% endblock %}
 
 {% block content %}
-        <table class="table table-hover table-striped jiraTable">
-            <h1><i class="fa fa-clone"></i> {% trans %}Select a board{% endtrans %}</h1>
-            </br>
+        <h1><i class="fa fa-clone"></i> {% trans %}Select a board{% endtrans %}</h1>
+        </br>
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h3 class="panel-title">Boards</h3>
+            </div>
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-filter"></i>
@@ -18,20 +21,16 @@
                 </span>
                 <input id="filter" type="text" class="form-control" placeholder="{% trans %}Type here...{% endtrans %}">
             </div>
-            </br>
-            <thead>
-                <tr>
-                    <th>{% trans %}Boardname{% endtrans %}</th>
-                </tr>
-            </thead>
+            <table class="table table-hover table-striped jiraTable">
             <tbody class="searchable">
-                {% for board in boards %}
-                    <tr>
-                        <td><a href="{{path('sprints', {'boardId': board.getId()})}}">{{board.getTitle()}}</a></td>
-                    </tr>
-                {% endfor %}
+            {% for board in boards %}
+                <tr>
+                    <td><a href="{{ path('sprints', {'boardId': board.getId()}) }}">{{ board.getTitle() }}</a></td>
+                </tr>
+            {% endfor %}
             </tbody>
-        </table>
+    </table>
+    </div>
 {% endblock %}
 
 {% block footer %}

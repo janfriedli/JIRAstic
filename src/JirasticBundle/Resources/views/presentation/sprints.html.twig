@@ -8,8 +8,12 @@
 {% endblock %}
 
 {% block content %}
-        <h1>{% trans %}Select a Sprint for{% endtrans %} "{{ activeBoard.getTitle() }}"</h1>
-        </br>
+    <h1>{% trans %}Select a Sprint for{% endtrans %} "{{ activeBoard.getTitle() }}"</h1>
+    </br>
+    <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+            <h3 class="panel-title">Sprints</h3>
+        </div>
         <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-filter"></i>
@@ -17,22 +21,19 @@
             </span>
             <input id="filter" type="text" class="form-control" placeholder="{% trans %}Type here...{% endtrans %}">
         </div>
-        </br>
         <table class="table table-hover table-striped jiraTable">
-            <thead>
-                <tr>
-                    <th>{% trans %}Sprint{% endtrans %}</th>
-                </tr>
-            </thead>
             <tbody class="searchable">
-                {% for sprint in sprints %}
-                    <tr>
-                        <td><a class="{{sprint.getState()}}" href="{{path('presentation', {'boardId': activeBoard.getId(), 'sprintId': sprint.getId()})}}">{{sprint.getTitle()}}</a></td>
-                    </tr>
-                {% endfor %}
+            {% for sprint in sprints %}
+                <tr>
+                    <td><a class="{{ sprint.getState() }}"
+                           href="{{ path('presentation', {'boardId': activeBoard.getId(), 'sprintId': sprint.getId()}) }}">{{ sprint.getTitle() }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
-        <a href="{{ path('boards') }}"><i class="fa fa-backward"></i> {% trans %}Go back{% endtrans %}</a>
+    </div>
+    <a href="{{ path('boards') }}"><i class="fa fa-backward"></i> {% trans %}Go back{% endtrans %}</a>
 {% endblock %}
 
 {% block footer %}
