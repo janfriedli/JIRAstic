@@ -20,7 +20,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="board")
  * @ORM\Entity(repositoryClass="JirasticBundle\Repository\BoardRepository")
- * @UniqueEntity("jiraId")
  */
 class Board
 {
